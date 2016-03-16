@@ -20,6 +20,7 @@ CREATE TABLE `sweb_user` (
   `firstname` varchar(45) DEFAULT NULL,
   `lastname` varchar(45) DEFAULT NULL,
   `usergroup` int(11) NOT NULL,
+  `status` enum('DISABLED','ENABLED') DEFAULT NULL,
   `permission` set('VIEW','ADD','DELETE','UPDATE') DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
@@ -58,10 +59,10 @@ INSERT INTO `sweb_usergroup` (`usergroup_id`,`groupname`) VALUES (4,'ClubHeads')
 INSERT INTO `sweb_usergroup` (`usergroup_id`,`groupname`) VALUES (3,'Faculty Interns');
 INSERT INTO `sweb_usergroup` (`usergroup_id`,`groupname`) VALUES (2,'Lecturers');
 
-INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`permission`) VALUES (1,'simon.suuk','123','simon','baaman suuk',1,'VIEW,ADD,DELETE,UPDATE');
-INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`permission`) VALUES (2,'george.ocran','132','george','ocran',1,'VIEW,ADD,DELETE,UPDATE');
-INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`permission`) VALUES (3,'eric.korku','231','eric','gbekor',1,'VIEW,ADD,DELETE,UPDATE');
-INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`permission`) VALUES (4,'maame.poku','213','maame','afriyie poku',1,'VIEW,ADD,DELETE,UPDATE');
+INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (1,'simon.suuk','123','simon','baaman suuk',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
+INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (2,'george.ocran','132','george','ocran',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
+INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (3,'eric.korku','231','eric','gbekor',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
+INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (4,'maame.poku','213','maame','afriyie poku',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
 
 INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Dlab','arts',1);
 INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('englab','engineering',2);
