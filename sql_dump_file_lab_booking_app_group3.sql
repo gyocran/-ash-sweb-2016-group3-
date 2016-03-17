@@ -20,6 +20,7 @@ CREATE TABLE `sweb_user` (
   `firstname` varchar(45) DEFAULT NULL,
   `lastname` varchar(45) DEFAULT NULL,
   `usergroup` int(11) NOT NULL,
+  `status` enum('DISABLED','ENABLED') DEFAULT NULL,
   `permission` set('VIEW','ADD','DELETE','UPDATE') DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
@@ -40,12 +41,14 @@ CREATE TABLE `sweb_lab` (
 
 CREATE TABLE `sweb_booking` (
   `booking_id` int(11) NOT NULL AUTO_INCREMENT,
-  `labname` varchar(45) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `org_name` varchar(200) NOT NULL,
+  `event_name` varchar(200) NOT NULL,
+  `event_description` varchar(200) NOT NULL,
+  `labname` varchar(45) NOT NULL,
   `bookingdate` date NOT NULL,
-  `start_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `bookingstatus` enum('BOOKED','NOT BOOKED') NOT NULL,
+  `bookingtime` set('8:00-9:00 am','9:00-10:00 am','10:00-11:00 am','11:00-12:00 am','12:00-1:00 pm',
+  '1:00-2:00 pm','2:00-3:00 pm','3:00-4:00 pm','4:00-5:00 pm','5:00-6:00 pm') NOT NULL,
   PRIMARY KEY (`booking_id`),
   KEY `labname_idx` (`labname`),
   KEY `user_id_idx` (`user_id`),
@@ -58,17 +61,17 @@ INSERT INTO `sweb_usergroup` (`usergroup_id`,`groupname`) VALUES (4,'ClubHeads')
 INSERT INTO `sweb_usergroup` (`usergroup_id`,`groupname`) VALUES (3,'Faculty Interns');
 INSERT INTO `sweb_usergroup` (`usergroup_id`,`groupname`) VALUES (2,'Lecturers');
 
-INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`permission`) VALUES (1,'simon.suuk','123','simon','baaman suuk',1,'VIEW,ADD,DELETE,UPDATE');
-INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`permission`) VALUES (2,'george.ocran','132','george','ocran',1,'VIEW,ADD,DELETE,UPDATE');
-INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`permission`) VALUES (3,'eric.korku','231','eric','gbekor',1,'VIEW,ADD,DELETE,UPDATE');
-INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`permission`) VALUES (4,'maame.poku','213','maame','afriyie poku',1,'VIEW,ADD,DELETE,UPDATE');
+INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (1,'simon.suuk','123','simon','baaman suuk',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
+INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (2,'george.ocran','132','george','ocran',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
+INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (3,'eric.korku','231','eric','gbekor',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
+INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (4,'maame.poku','213','maame','afriyie poku',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
 
 INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Dlab','arts',1);
 INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('englab','engineering',2);
 INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('lab221','computer science',3);
 INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('lab222','computer science',4);
 
-INSERT INTO `sweb_booking` (`booking_id`,`labname`,`user_id`,`bookingdate`,`start_time`,`end_time`,`bookingstatus`) VALUES (1,'Dlab',2,'2016-03-14','2016-03-14 06:44:24','2016-03-21 06:04:00','BOOKED');
-INSERT INTO `sweb_booking` (`booking_id`,`labname`,`user_id`,`bookingdate`,`start_time`,`end_time`,`bookingstatus`) VALUES (2,'englab',4,'2016-03-22','2016-03-22 13:30:00','2016-03-25 13:30:00','BOOKED');
-INSERT INTO `sweb_booking` (`booking_id`,`labname`,`user_id`,`bookingdate`,`start_time`,`end_time`,`bookingstatus`) VALUES (3,'lab222',1,'2016-04-02','2016-04-02 09:15:35','2016-04-02 10:50:30','NOT BOOKED');
-INSERT INTO `sweb_booking` (`booking_id`,`labname`,`user_id`,`bookingdate`,`start_time`,`end_time`,`bookingstatus`) VALUES (4,'lab221',3,'2016-04-03','2016-04-03 07:30:00','2016-04-03 09:30:00','NOT BOOKED');
+INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (1,2,'speak club','public speaking','we will be teaching you the techniques to overcome your fears for public speaking','Dlab','2016-03-14','8:00-9:00 am');
+INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (2,4,'pencils of promise','mentoring kids','we will discuss how we can build the capacities of pupils in ayim primary\',\'englab','englab','2016-03-22','8:00-9:00 am');
+INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (3,1,'readHub','teaching reading skills','come lets discuss how we can cultivate reading habit among kids','lab222','2016-04-02','9:00-10:00 am');
+INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (4,3,'peer educators','first meeting','we will be discussing how we can make the club vibrant this semester','lab221','2016-04-03','12:00-1:00 pm');
