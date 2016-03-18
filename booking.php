@@ -18,7 +18,7 @@ class booking extends adb
 	* gets the bookings made by a particular userID
 	*@param int userID user code
 	*/
-	function getMyBooking($userID)
+	function viewMyBooking($userID)
 	{	
 	
 	$strQuery ="select booking_id, labname, bookingdate, bookingtime, org_name, event_name, event_description from sweb_booking where user_id = $userID";
