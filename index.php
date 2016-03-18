@@ -6,10 +6,6 @@
 			
 		</script>
 	</head>
-	<style>
-	
-
-	</style>
 	<body>
 		<table>
 			<tr>
@@ -18,7 +14,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td id="mainnav" style span = "color: lightblue">
+				<td id="mainnav">
 					<div class="menuitem">menu 1</div>
 					<div class="menuitem">menu 2</div>
 					<div class="menuitem">menu 3</div>
@@ -26,7 +22,7 @@
 				</td>
 				<td id="content">
 					<div id="divPageMenu">
-						<span class="menuitem" >page menu 1</span>
+						<span class="menuitem">page menu 1</span>
 						<span class="menuitem" >page menu 2</span>
 						<span class="menuitem" >page menu 3</span>
 						<input type="text" id="txtSearch" />
@@ -43,27 +39,37 @@
 								<td> Booking ID </td>
 								<td> Lab Name </td>
 								<td> Booking Date </td>
-								<td> Start Time </td>
-								<td> End Time </td>
-								<td> Booking Status </td>
+								<td> Booking Time</td>
+								<td> Name of Organization </td>
+								<td> Event Name </td>
+								<td> Event Description </td>
 							</tr>
 							
 							<?php
 							include_once("booking.php");
 							$book = new booking();
 							
-							$row = $book -> viewMyBooking(3);
+							$booking = $book -> getMyBooking(3);
 							
-							if ($row!=false)
+							if ($booking==false){
+								echo "Error";
+								exit();
+							}
+							
+							else
+							{
+								$row = $book ->fetch();
+							
+							while ($row!=false)
 							{
 								echo"<tr>
 				
-				<td bgcolor = lightblue>{$row["booking_id"]}</td> <td bgcolor = lightblue> {$row["labname"]} </td> <td bgcolor= lightblue>{$row["bookingdate"]}</td>  <td bgcolor= lightblue>{$row["start_time"]}</td> <td bgcolor= lightblue>{$row["end_time"]}</td>
-				<td bgcolor= lightblue>{$row["bookingstatus"]}</td> </tr>";	
-	
+				<td bgcolor = lightblue>{$row["booking_id"]}</td> <td bgcolor = lightblue> {$row["labname"]} </td> <td bgcolor= lightblue>{$row["bookingdate"]}</td>  <td bgcolor= lightblue>{$row["bookingtime"]}</td> <td bgcolor= lightblue>{$row["org_name"]}</td>
+				<td bgcolor= lightblue>{$row["event_name"]}</td> <td bgcolor= lightblue>{$row["event_description"]}</td> </tr>";	
 							
+							$row = $book ->fetch();
 							}
-								
+							}
 							?>
 								
 					</div>
