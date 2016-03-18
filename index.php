@@ -6,15 +6,19 @@
 			
 		</script>
 	</head>
+	<style>
+	
+
+	</style>
 	<body>
 		<table>
 			<tr>
 				<td colspan="2" id="pageheader">
-					Application Header
+					BOOK-A-LAB
 				</td>
 			</tr>
 			<tr>
-				<td id="mainnav">
+				<td id="mainnav" style span = "color: lightblue">
 					<div class="menuitem">menu 1</div>
 					<div class="menuitem">menu 2</div>
 					<div class="menuitem">menu 3</div>
@@ -36,23 +40,32 @@
 						<span class="clickspot">click here </span>
 						<table id="tableExample" class="reportTable" width="100%">
 							<tr class="header">
-								<td>column1</td>
-								<td>column2</td>
-								<td>column3</td>
-								<td>column4</td>
+								<td> Booking ID </td>
+								<td> Lab Name </td>
+								<td> Booking Date </td>
+								<td> Start Time </td>
+								<td> End Time </td>
+								<td> Booking Status </td>
 							</tr>
-							<tr class="row1">
-								<td>data example</td>
-								<td>123</td>
-								<td>01/01/2014</td>
-								<td>data</td>
-							</tr>
-							<tr class="row2">
-								<td>data example</td>
-								<td>123</td>
-								<td>01/01/2014</td>
-								<td>data</td>
-							</tr>
+							
+							<?php
+							include_once("booking.php");
+							$book = new booking();
+							
+							$row = $book -> viewMyBooking(3);
+							
+							if ($row!=false)
+							{
+								echo"<tr>
+				
+				<td bgcolor = lightblue>{$row["booking_id"]}</td> <td bgcolor = lightblue> {$row["labname"]} </td> <td bgcolor= lightblue>{$row["bookingdate"]}</td>  <td bgcolor= lightblue>{$row["start_time"]}</td> <td bgcolor= lightblue>{$row["end_time"]}</td>
+				<td bgcolor= lightblue>{$row["bookingstatus"]}</td> </tr>";	
+	
+							
+							}
+								
+							?>
+								
 					</div>
 				</td>
 			</tr>

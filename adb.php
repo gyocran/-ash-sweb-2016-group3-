@@ -7,7 +7,7 @@
  */
 
 define("DB_HOST", 'localhost');
-define("DB_NAME", 'webtech');
+define("DB_NAME", 'ash_sweb_group_3_db');
 define("DB_PORT", 3306);
 define("DB_USER","root");
 define("DB_PWORD","");
