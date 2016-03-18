@@ -47,9 +47,14 @@
 							
 							<?php
 							include_once("booking.php");
+							
+							if (isset ($_REQUEST['id'])){
+								
+								$userID = $_REQUEST['id'];
+							
 							$book = new booking();
 							
-							$booking = $book -> getMyBooking(3);
+							$booking = $book -> viewMyBooking($userID);
 							
 							if ($booking==false){
 								echo "Error";
@@ -68,6 +73,7 @@
 				<td bgcolor= lightblue>{$row["event_name"]}</td> <td bgcolor= lightblue>{$row["event_description"]}</td> </tr>";	
 							
 							$row = $book ->fetch();
+							}
 							}
 							}
 							?>
