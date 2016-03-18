@@ -8,9 +8,9 @@ class booking extends adb
 	
 	function getUserID()
 	{
-	$strQuery = "select user_id from sweb_booking left join sweb_user on sweb_booking.user_id = sweb_user.user_id"; 
+	$strQuery = "select sweb_booking.user_id from sweb_booking left join sweb_user on sweb_booking.user_id = sweb_user.user_id"; 
 	
-	return this -> query($strQuery);
+	return $this -> query($strQuery);
 	}
 	
 	function getBookingID()
@@ -72,10 +72,9 @@ class booking extends adb
 	}
 	
 	function viewBookingByDate($date)
-	{	
-	$strQuery ="select booking_id, labname, bookingdate, start_time, end_time, bookingstatus from sweb_booking where bookingdate = $date";
-	
-	return $this -> query($strQuery);
+	{
+		$strQuery ="select booking_id, labname, bookingdate, start_time, end_time, bookingstatus from sweb_booking where bookingdate = $date";
+		return $this -> query($strQuery);
 	}
 }
 
