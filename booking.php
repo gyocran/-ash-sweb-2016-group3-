@@ -31,15 +31,77 @@ class booking extends adb{
 		return $this->query($strQuery);
 	}
 	
-	/**
-	* delete booking
-	* @param int $bookingId the booking id to be deleted
-	* returns true if the booking is deleted, else false
+		/**
+	* edit booking
+	* @param int bookingId booking id
+	* @param string labName lab name
+	* @param int userId user id
+	* @param string bookingDate booking date
+	* @param string startTime start time
+	* @param string endTime end time
+	* returns true if the booking is updated, else false
 	*/
-	function deleteBooking($bookingId){
-		$strQuery = "DELETE FROM sweb_booking WHERE booking_id = '$bookingId' ";
+	function updateBooking($bookingId, $userId, $orgName, $eventName, $eventDesc, $labName, $bookingDate, $bookingTime){
+		//booking slot is available
+		if($this->checkSlotAvailabilty($labName, $bookingDate, $bookingTime) == null){
+			$strQuery = "UPDATE sweb_booking SET
+						user_id = '$userId',
+						org_name = '$orgName',
+						event_name = '$eventName',
+						event_description = '$eventDesc',
+						labname = '$labName',
+						bookingdate = '$bookingDate',
+						bookingtime = '$bookingTime'
+				    WHERE booking_id = '$bookingId' ";
 		
-		return $this->query($strQuery);
+			return $this->query($strQuery);
+		}
+		
+		//booking slot is not available
+		if($this->checkSlotAvailabilty($labName, $bookingDate, $bookingTime) != null){
+			$row = $this->checkSlotAvailabilty($labName, $bookingDate, $bookingTime);
+			//echo print_r($row);
+			
+			//check whether current row with similar labname,bookingdate and bookingtime is the same row being updated
+			if ($bookingId == $row['booking_id']){
+				$strQuery = "UPDATE sweb_booking SET
+							user_id = '$userId',
+							org_name = '$orgName',
+							event_name = '$eventName',
+							event_description = '$eventDesc',
+							labname = '$labName',
+							bookingdate = '$bookingDate',
+							bookingtime = '$bookingTime'
+						WHERE booking_id = '$bookingId' ";
+		
+				return $this->query($strQuery);
+			}
+			
+			return false;
+		}
+		
 	}
+	
+	/**
+	* check booking slot availability
+	* @param string bookingDate the booking date
+	* @param string bookingtime the event start time
+	* @param string endTime the event end time
+	* returns true if the booking slot is available, else false
+	*/
+	function checkSlotAvailabilty($labName, $bookingDate, $bookingTime){
+		$filter = " (labname = '$labName') and (bookingdate = '$bookingDate') and (bookingtime = '$bookingTime') ";
+		$this->getBooking($filter);
+		$row = $this->fetch();
+		
+		//booking slot available
+		if ($row == null){
+			return $row;
+		}
+		
+		//booking slot not available
+		return $row;
+	}
+
 }
 ?>

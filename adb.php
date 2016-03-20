@@ -7,10 +7,12 @@ include_once("setting.php");
 * Database connection helper class
 */
 class adb{
-	var $db=null;
-	var $result=null;
-	function adb(){
+	var $db;
+	var $result;
+	
+	function __construct(){
 	}
+	
 	/**
 	*Connect to database 
 	*@return boolean ture if connected else false
@@ -34,9 +36,7 @@ class adb{
 		if(!$this->connect()){
 			return false;
 		}
-		if($this->db==null){
-			return false;
-		}
+		
 		$this->result=$this->db->query($strQuery);
 		if($this->result==false){
 			return false;
@@ -58,6 +58,10 @@ class adb{
 		}
 		
 		return $this->result->fetch_assoc();
+	}
+	
+	function getNumRows(){
+		return mysqli_num_rows($this->result);
 	}
 }
 /*
