@@ -11,8 +11,8 @@ class testbooking extends PHPUnit_Framework_TestCase{
 		$this->assertEquals(true, $bookingObj->deleteBooking(4) );
 	
 		//assert
-		$bookingObj->getBooking("booking_id = '4' ");
-		$this->assertEquals(null, $bookingObj->fetch());
+		$bookingObj->getBooking("booking_id = 4");
+		$this->assertEquals(0, $bookingObj->getNumRows());
 	}
 	
 }
