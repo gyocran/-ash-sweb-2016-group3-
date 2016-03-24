@@ -60,10 +60,10 @@
 								$r=$bookingObj->updateBooking($booking_id, $user_id, $org_name, $event_name, $event_description, $labname, $bookingdate, $bookingtime);
 											
 								if($r==false){
-									$strStatusMessage="booking could not be updated";
+									$strStatusMessage="$event_name could not be updated";
 								}else{
 									$strStatusMessage="$event_name successfully updated";
-									 echo "<script> location.replace('index.php'); </script>";
+									 //echo "<script> location.replace('index.php'); </script>";
 								}
 									
 								
@@ -80,7 +80,7 @@
 					?>
 					
 					<div id="divStatus" class="status">
-						status message
+						<?php echo $strStatusMessage; ?>
 					</div>
 					<div id="divContent">
 						Content space
@@ -114,7 +114,7 @@
 								</div>
 								<br>
 								
-								<div>Booking Date: <input type="text" name="bookingdate" value="<?php echo $bookingdate ?>"/></div>
+								<div>Booking Date: <input type="date" name="bookingdate" value="<?php echo $bookingdate ?>"/></div>
 								<br>
 								<div>Booking Time: <select name = "bookingtime" />
 									<?php $selected = ("8:00-9:00 am" == $bookingtime)? selected : "";  echo "<option value = '8:00-9:00 am'  $selected >8:00-9:00 am</option>";?>
