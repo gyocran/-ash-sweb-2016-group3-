@@ -39,7 +39,6 @@ CREATE TABLE `sweb_lab` (
   CONSTRAINT `supervisor_id` FOREIGN KEY (`supervisor_id`) REFERENCES `sweb_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 CREATE TABLE `sweb_booking` (
   `booking_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -48,14 +47,14 @@ CREATE TABLE `sweb_booking` (
   `event_description` varchar(200) NOT NULL,
   `labname` varchar(45) NOT NULL,
   `bookingdate` date NOT NULL,
-  `bookingtime` set('8:00-9:00 am','9:00-10:00 am','10:00-11:00 am','11:00-12:00 am','12:00-1:00 pm','1:00-2:00 pm','2:00-3:00 pm','3:00-4:00 pm','4:00-5:00 pm','5:00-6:00 pm') NOT NULL
-, 
-  PRIMARY KEY (`booking_id`,`labname`,`bookingdate`,`bookingtime`),
+  `bookingtime` set('8:00-9:00 am','9:00-10:00 am','10:00-11:00 am','11:00-12:00 am','12:00-1:00 pm','1:00-2:00 pm','2:00-3:00 pm','3:00-4:00 pm','4:00-5:00 pm','5:00-6:00 pm') NOT NULL,
+  PRIMARY KEY (`booking_id`),
+  UNIQUE KEY `unique_index` (`labname`,`bookingdate`,`bookingtime`),
   KEY `labname_idx` (`labname`),
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `labname` FOREIGN KEY (`labname`) REFERENCES `sweb_lab` (`labname`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `sweb_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 INSERT INTO `sweb_usergroup` (`usergroup_id`,`groupname`) VALUES (1,'Administrator');
 INSERT INTO `sweb_usergroup` (`usergroup_id`,`groupname`) VALUES (4,'ClubHeads');
