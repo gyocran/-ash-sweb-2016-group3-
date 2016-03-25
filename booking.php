@@ -73,8 +73,14 @@ class booking extends adb
 	
 	function viewBookingByDate($date)
 	{
-		$strQuery ="select booking_id, labname, bookingdate, start_time, end_time, bookingstatus from sweb_booking where bookingdate = $date";
+		$strQuery ="select * from sweb_booking where bookingdate = \"$date\"";
+		// echo $strQuery;
 		return $this -> query($strQuery);
+	}
+	
+	function getBookedDates(){
+		$strQuery = "SELECT bookingdate FROM `sweb_booking`";
+		return $this->query($strQuery);
 	}
 }
 
