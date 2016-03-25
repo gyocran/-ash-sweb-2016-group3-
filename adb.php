@@ -9,8 +9,13 @@ include_once("setting.php");
 class adb{
 	var $db=null;
 	var $result=null;
-	function adb(){
+	
+	/**
+	*This a constructor
+	*/
+	function _construct(){
 	}
+	
 	/**
 	*Connect to database 
 	*@return boolean ture if connected else false
