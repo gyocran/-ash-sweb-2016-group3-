@@ -44,12 +44,12 @@
 							
 							include_once("users.php");
 							$userObj=new users();
-							$userObj->getUsers("usercode='$usercode' ");
+							$userObj->getUsers("user_id='$usercode' ");
 							$row = $userObj->fetch();
 							
 							if(isset($_POST['submit'])){
 								$username = $_REQUEST['username'];
-								$password = $_REQUEST['pword'];
+								$password = $_REQUEST['password'];
 								$firstname = $_REQUEST['firstname'];
 								$lastname = $_REQUEST['lastname'];
 								$usergroup = $_REQUEST['usergroup'];
@@ -72,7 +72,7 @@
 							}
 							
 							$old_username = $row['username'];
-							$old_password = $row['pword'];
+							$old_password = $row['password'];
 							$old_firstname = $row['firstname'];
 							$old_lastname = $row['lastname'];
 							$old_usergroup = $row['usergroup'];
@@ -88,7 +88,7 @@
 					<form action = "" method = "POST">
 						Username:	<input type = "text" name = "username" value = "<?php echo $old_username; ?>"/> <br>
 						 <br>
-						Password:	  <input type = "password" name = "pword" value = "<?php echo $old_password; ?>"/> <br>
+						Password:	  <input type = "password" name = "password" value = "<?php echo $old_password; ?>"/> <br>
 						 <br>
 						Firstname:	<input type = "text" name = "firstname" value = "<?php echo $old_firstname; ?>"/> <br>
 						 <br>
@@ -102,8 +102,8 @@
 								
 								echo "<option value = '-1'>-- select usergroup --</option>";
 								while($row = $usergroupObj->fetch()){
-									$selected = ($row["usergroup"] === $old_usergroup)? selected : "";  
-									echo "<option value = {$row["usergroup"]} $selected >{$row["groupname"]}</option>";
+									$selected = ($row["usergroup_id"] === $old_usergroup)? selected : "";  
+									echo "<option value = {$row["usergroup_id"]} $selected >{$row["groupname"]}</option>";
 								}
 							?>
 							</select><br>

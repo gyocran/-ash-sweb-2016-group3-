@@ -45,7 +45,7 @@
 									
 									echo "<option value = '-1' >--Filter Search By UserGroup--</option>";
 									while($row = $usergroupObj->fetch()){
-										echo "<option value = {$row["usergroup"]} >{$row["groupname"]}</option>";
+										echo "<option value = {$row["usergroup_id"]} >{$row["groupname"]}</option>";
 									}
 								?>
 							</select>
@@ -87,9 +87,9 @@
 												<td bgcolor=white>{$row["username"]}</td>
 												<td bgcolor=white>{$row["firstname"]} {$row["lastname"]}</td>
 												<td align=right bgcolor=white>{$row["usergroup"]}</td>
-												<td bgcolor=white><a href = 'change_user_status.php?usercode={$row["usercode"]}&status={$row["status"]}' >{$row["status"]}</a></td>
-												<td bgcolor=white><a href = 'usersedit.php?usercode={$row["usercode"]}' >Edit</a></td>
-												<td bgcolor=white><a href = 'usersdelete.php?usercode={$row["usercode"]}' >Delete</a></td>
+												<td bgcolor=white><a href = 'change_user_status.php?usercode={$row["user_id"]}&status={$row["status"]}' >{$row["status"]}</a></td>
+												<td bgcolor=white><a href = 'usersedit.php?usercode={$row["user_id"]}' >Edit</a></td>
+												<td bgcolor=white><a href = 'usersdelete.php?usercode={$row["user_id"]}' >Delete</a></td>
 											</tr>";
 										$mem=1;	
 									}else{
@@ -97,9 +97,9 @@
 												<td bgcolor=orange>{$row["username"]}</td>
 												<td bgcolor=orange>{$row["firstname"]} {$row["lastname"]}</td>
 												<td align=right bgcolor=orange>{$row["usergroup"]}</td>
-												<td bgcolor=orange><a href = 'change_user_status.php?usercode={$row["usercode"]}&status={$row["status"]}' >{$row["status"]}</a></td>
-												<td><a href = 'usersedit.php?usercode={$row["usercode"]}' >Edit</a></td>
-												<td><a href = 'usersdelete.php?usercode={$row["usercode"]}' >Delete</a></td>
+												<td bgcolor=orange><a href = 'change_user_status.php?usercode={$row["user_id"]}&status={$row["status"]}' >{$row["status"]}</a></td>
+												<td><a href = 'usersedit.php?usercode={$row["user_id"]}' >Edit</a></td>
+												<td><a href = 'usersdelete.php?usercode={$row["user_id"]}' >Delete</a></td>
 											</tr>";
 										$mem=0;	
 									}
@@ -137,9 +137,9 @@
 												<td bgcolor=white>{$row["username"]}</td>
 												<td bgcolor=white>{$row["firstname"]} {$row["lastname"]}</td>
 												<td align=right bgcolor=white>{$row["usergroup"]}</td>
-												<td bgcolor=white><a href = 'change_user_status.php?usercode={$row["usercode"]}&status={$row["status"]}' >{$row["status"]}</a></td>
-												<td bgcolor=white><a href = 'usersedit.php?usercode={$row["usercode"]}' >Edit</a></td>
-												<td bgcolor=white><a href = 'usersdelete.php?usercode={$row["usercode"]}' >Delete</a></td>
+												<td bgcolor=white><a href = 'change_user_status.php?usercode={$row["user_id"]}&status={$row["status"]}' >{$row["status"]}</a></td>
+												<td bgcolor=white><a href = 'usersedit.php?usercode={$row["user_id"]}' >Edit</a></td>
+												<td bgcolor=white><a href = 'usersdelete.php?usercode={$row["user_id"]}' >Delete</a></td>
 											</tr>";
 										$mem=1;	
 									}else{
@@ -147,9 +147,9 @@
 												<td bgcolor=orange>{$row["username"]}</td>
 												<td bgcolor=orange>{$row["firstname"]} {$row["lastname"]}</td>
 												<td align=right bgcolor=orange>{$row["usergroup"]}</td>
-												<td bgcolor=orange><a href = 'change_user_status.php?usercode={$row["usercode"]}&status={$row["status"]}' >{$row["status"]}</a></td>
-												<td bgcolor=orange><a href = 'usersedit.php?usercode={$row["usercode"]}' >Edit</a></td>
-												<td bgcolor=orange><a href = 'usersdelete.php?usercode={$row["usercode"]}' >Delete</a></td>
+												<td bgcolor=orange><a href = 'change_user_status.php?usercode={$row["user_id"]}&status={$row["status"]}' >{$row["status"]}</a></td>
+												<td bgcolor=orange><a href = 'usersedit.php?usercode={$row["user_id"]}' >Edit</a></td>
+												<td bgcolor=orange><a href = 'usersdelete.php?usercode={$row["user_id"]}' >Delete</a></td>
 											</tr>";
 										$mem=0;	
 									}

@@ -14,7 +14,7 @@ class usergroups extends adb{
 	*returns true if the usergroups are fetched, else false
 	*/
 	function getAllUserGroups(){
-		$strQuery="SELECT usergroup, groupname from wt_usergroup";
+		$strQuery="SELECT usergroup_id, groupname from sweb_usergroup";
 		return $this->query($strQuery);
 	}
 	
@@ -24,7 +24,7 @@ class usergroups extends adb{
 	*returns true if the usergroup is added, else false
 	*/
 	function addUserGroup($groupname){
-		$strQuery = "INSERT INTO wt_usergroup SET
+		$strQuery = "INSERT INTO sweb_usergroup SET
 					groupname=$groupname";
 		
 		return $this->query($strQuery);	
@@ -36,7 +36,7 @@ class usergroups extends adb{
 	*returns true if the usergroup is deleted, else false
 	*/
 	function deleteUserGroup($usergroup){
-		$strQuery = "DELETE FROM wt_usergroup WHERE usergroup = '$usergroup' ";
+		$strQuery = "DELETE FROM sweb_usergroup WHERE usergroup_id = '$usergroup' ";
 		
 		return $this->query($strQuery);
 	}
@@ -46,9 +46,10 @@ class usergroups extends adb{
 	*@param int usercode the user code to be updated
 	*returns true if the user is updated, else false
 	*/
-	function editUser($usergroup){
-		$strQuery = "UPDATE wt_usergroup SET
-					usergroup = '$usergroup' ";
+	function editUserGroup($usergroup, $groupname){
+		$strQuery = "UPDATE sweb_usergroup SET
+					groupname = '$groupname' 
+				    WHERE usergroup_id = '$usergroup' ";
 		
 		return $this->query($strQuery);
 	}

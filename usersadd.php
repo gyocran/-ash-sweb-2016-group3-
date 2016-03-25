@@ -34,7 +34,7 @@
 						if(isset($_POST['submit'])){
 				
 							$username = $_REQUEST['username'];
-							$password = $_REQUEST['pword'];
+							$password = $_REQUEST['password'];
 							$firstname = $_REQUEST['firstname'];
 							$lastname = $_REQUEST['lastname'];
 							$usergroup = $_REQUEST['usergroup'];
@@ -60,7 +60,7 @@
 					<form action = "" method = "POST">
 						Username:	<input type = "text" name = "username" value = ""/> <br>
 						 <br>
-						Password:	  <input type = "password" name = "pword" value = ""/> <br>
+						Password:	  <input type = "password" name = "password" value = ""/> <br>
 						 <br>
 						Firstname:	<input type = "text" name = "firstname" value = ""/> <br>
 						 <br>
@@ -74,7 +74,7 @@
 								
 								echo "<option value = '-1'>-- select usergroup --</option>";
 								while($row = $usergroupObj->fetch()){
-									echo "<option value = {$row["usergroup"]}>{$row["groupname"]}</option>";
+									echo "<option value = {$row["usergroup_id"]}>{$row["groupname"]}</option>";
 								}
 							?>
 							</select><br>

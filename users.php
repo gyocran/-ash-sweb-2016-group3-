@@ -29,9 +29,9 @@ class users extends adb{
 	function addUser($username,$password='none',$firstname='none',$lastname='none',
 		$usergroup=0,$status='none',$permission='none'){
 		
-		$strQuery="INSERT INTO wt_users SET
+		$strQuery="INSERT INTO sweb_user SET
 					username = '$username',
-					pword = '$password',
+					password = '$password',
 					firstname = '$firstname',
 					lastname = '$lastname',
 					usergroup = '$usergroup', 
@@ -46,7 +46,7 @@ class users extends adb{
 	*@return boolean true if successful, else false
 	*/
 	function getUsers($filter=false){
-		$strQuery="SELECT * FROM wt_users";
+		$strQuery="SELECT * FROM sweb_user";
 		
 		if($filter){
 			$strQuery=$strQuery . " where $filter";
@@ -84,7 +84,7 @@ class users extends adb{
 	*returns true if the user is deleted, else false
 	*/
 	function deleteUser($usercode){
-		$strQuery = "DELETE FROM wt_users WHERE usercode = '$usercode' ";
+		$strQuery = "DELETE FROM sweb_user WHERE user_id = '$usercode' ";
 		
 		return $this->query($strQuery);
 	}
@@ -95,15 +95,15 @@ class users extends adb{
 	*returns true if the user is updated, else false
 	*/
 	function editUser($usercode,$username,$firstname,$lastname,$password,$usergroup,$permission,$status){
-		$strQuery = "UPDATE wt_users SET
+		$strQuery = "UPDATE sweb_user SET
 						username = '$username',
-						pword = '$password',
+						password = '$password',
 						firstname = '$firstname',
 						lastname = '$lastname',
 						usergroup = '$usergroup', 
 						status = '$status',
 						permission = '$permission' 
-						WHERE usercode = '$usercode' ";
+						WHERE user_id = '$usercode' ";
 		
 		return $this->query($strQuery);
 	}
@@ -115,8 +115,8 @@ class users extends adb{
 	*returns true if the user status is changed, else false
 	*/
 	function changeUserStatus($usercode,$status){
-		$strQuery = "UPDATE wt_users SET status = '$status'
-				    WHERE usercode = '$usercode' ";
+		$strQuery = "UPDATE sweb_user SET status = '$status'
+				    WHERE user_id = '$usercode' ";
 		
 		return $this->query($strQuery);
 	}

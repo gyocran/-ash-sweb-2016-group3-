@@ -1,32 +1,26 @@
 <?php
-
 /**
 *Database connection helper
 */
 include_once("setting.php");
-
 /**
 * Database connection helper class
 */
 class adb{
-	var $db_conn=null;
+	var $db=null;
 	var $result=null;
-	
-	function __construct(){
-		$this->connect();
+	function adb(){
 	}
-	
 	/**
 	*Connect to database 
 	*@return boolean ture if connected else false
 	*/
 	function connect(){
-		//connect
-		$this->db_conn = new mysqli(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 		
-		if($this->db_conn->connect_errno){
+		//connect
+		$this->db=new mysqli(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+		if($this->db->connect_errno){
 			//no connection, exit
-			echo $conn->connect_errno;
 			return false;
 		}
 		return true;
@@ -38,34 +32,42 @@ class adb{
 	*/
 	function query($strQuery){
 		if(!$this->connect()){
-			$this->connect();
+			return false;
 		}
-		
-		$this->result = $this->db_conn->query($strQuery);
-		
-		if(!$this->result){
-			echo $conn->error;
+		if($this->db==null){
+			return false;
+		}
+		$this->result=$this->db->query($strQuery);
+		if($this->result==false){
 			return false;
 		}
 		return true;
 	}
-	
-	/**
+	/*
 	* Fetch from the current data set and return
 	*@return array one record
 	*/
 	function fetch(){
-		if(!$this->result){
+		//Complete this funtion to fetch from the $this->result
+		if($this->result==null){
+			return false;
+		}
+		
+		if($this->result==false){
 			return false;
 		}
 		
 		return $this->result->fetch_assoc();
 	}
 }
-
-/*test code
+/*
+This is a test code
 $obj=new adb();
-$obj->query("select * from users");
+if(!$obj->query("select * from users"))
+{
+	echo "error";
+	exit();
+}
 print_r($obj->fetch());
 */
 ?>
