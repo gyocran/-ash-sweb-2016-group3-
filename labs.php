@@ -7,7 +7,7 @@ include_once("adb.php");
 *Labs  class
 */
 class labs extends adb{
-	function labs(){
+	function __construct(){
 	
 	}
 

@@ -22,7 +22,7 @@
 				</td>
 				<td id="content">
 					<div id="divPageMenu">
-						<span class="menuitem"><a href= "#">View MasterSchedule</a></span>
+						<span class="menuitem"><a href= "viewmasterschedule.php">View MasterSchedule</a></span>
 						<span class="menuitem" ><a href= "index.php?id=2">My Bookings</a></span>
 						<span class="menuitem" ><a href= "userslist.php">Manage Users</a></span>
 						<input type="text" id="txtSearch" />
