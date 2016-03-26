@@ -4,7 +4,7 @@
 		<title>Add New User</title>
 		<link rel="stylesheet" href="css/style.css">
 		<script>
-			<!--add validation js script here
+			
 		</script>
 	</head>
 	<body>
@@ -23,9 +23,9 @@
 				</td>
 				<td id="content">
 					<div id="divPageMenu">
-						<span class="menuitem" >page menu 1</span>
-						<span class="menuitem" >page menu 2</span>
-						<span class="menuitem" >page menu 3</span>
+						<span class="menuitem"><a href= "viewmasterschedule.php">View MasterSchedule</a></span>
+						<span class="menuitem" ><a href= "index.php?id=2">My Bookings</a></span>
+						<span class="menuitem" ><a href= "userslist.php">Manage Users</a></span>
 						<input type="text" id="txtSearch" />
 						<span class="menuitem">search</span>		
 					</div>
