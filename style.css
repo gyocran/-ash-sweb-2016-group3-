@@ -1,0 +1,193 @@
+/**
+*This is the css for our final project
+*@authors (Maame, Simon, Eric, George)
+*/
+
+/*this is the styling for the page header. it is an id*/
+#pageheader{
+	height: 1in;
+    background-color: none;
+    font-size: large;
+    text-align: left;
+    width: 100%px;
+    border: 0;
+}
+
+/*this is the styling for the page menu. it is an id*/
+#menu{
+	width: 100%;
+	border-bottom-width: 5%;
+}
+
+/*this is the styling for a link on the page. it is a class*/
+.item {
+	text-decoration:none;
+    color:#1472A5;
+	cursor:hand;
+	text-align: center;
+	width: 300px;
+    padding: 10px;
+    font-size:130%;
+}
+
+/*this is the styling effect for a hover event over a link on the page. it is a class*/
+.item:hover{
+	cursor:hand;
+	font-weight:bold;
+	background-color:Silver;
+	border-radius: 25px;
+}
+
+/*this is the styling for the content area of the page. it is an id*/
+#contentarea{
+	background-color: gray;
+	height: 320;
+	text-align: center;
+}
+
+/*this is the styling for a section on the page. it is an id*/
+#section1{
+	background-color: none;
+	float: left;
+	width :200;
+	height: 400;
+	text-align: center;
+}
+
+/*this is the styling for the content area of the page. it is an id*/
+#content {
+	width:12in;
+    margin-left: 500px;
+	vertical-align:top;	
+}
+
+/*this is the styling for the content area of the page. it is an id*/
+#divContent {
+	width:12in;
+    margin-left: 10%;
+	vertical-align:top;	
+	height: 80%;
+}
+
+/*this is the styling for the page footer. it is an id*/
+#pagefooter{
+	height: 1in;
+    background-color: #003d4d;
+    font-size: large;
+    text-align: center;
+    width: 1350px;
+}
+
+/*this is the styling for the format of a table. it is an id*/
+#tableformat{
+	font-size: large;
+	align:center;
+	height: 70%;
+	width: 35%;
+	position: absolute;
+	padding:0.5%;
+	top: 22%;
+	left:35%;
+}
+
+/*this is the styling for an item description on a page. it is an id*/
+#divdescription{
+	font-size: large;
+	align:center;
+	color: white;
+	margin-top: 60px;
+}
+
+/*this is the styling for a label on a page*/
+label{
+	color:#1472A5;
+	text-align: center;
+}
+
+/*this is the styling for a table*/
+table{
+	margin - left: auto;
+	margin - right: auto;
+	margin-top: 60px;
+	background-color: white;
+	border-radius: 20px;
+}
+
+/*this is the styling for a submit button*/
+input[type=submit]{
+	 color:#1472A5;
+	 font-size: large;
+}
+
+/*this is the styling effect for a hover event over a submit button*/
+input[type=submit]:hover{
+	background-color: grey;
+	color:black;
+}
+
+/*this is the styling effect of the body element*/
+body{
+	background-image: url("../UI/header.png") ;
+    background-repeat: no-repeat;
+	background-size: 100% 100%; 
+}
+
+/*this is the styling effect of the html page*/
+html{
+    height: 100%;
+    width: 100%;
+    font-family: Verdana, arial;
+}
+
+/*this is the styling effect of a report table. it is a class*/
+.reportTable 
+{ 
+    border:1px;
+    border-collapse:collapse;
+	margin-top: 60px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+/*this is the styling effect of the header of a report table. it is a class*/
+.reportTable .header
+{ 
+    text-transform: uppercase;
+    color:#1472A5 ;
+	text-align: left;
+}
+
+/*this is the styling effect of the first row of a report table. it is a class*/
+.reportTable .row1
+{ 
+    background-color: #ff9999;
+	border-radius: 10px;
+}
+
+/*this is the styling effect of the second row of a report table. it is a class*/
+.reportTable .row2
+{ 
+    background-color:White;
+	border-radius: 10px;
+}
+
+/*this is the styling effect for hovering over the report table. it is a class*/
+.reportTable tr:hover
+{ 
+    background-color:#808080
+}
+
+/*this is the styling effect of an add button*/
+.button-add {
+	color: #1472A5;
+	background: grey;
+	border-radius: .5em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	font-size: 110%;
+}
+
+/*this is the styling effect for hovering over the add button. it is a class*/
+.button-add:hover{
+	background-color: grey;
+	color:black;
+}

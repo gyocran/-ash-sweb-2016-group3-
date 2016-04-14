@@ -1,61 +1,92 @@
 <html>
 	<head>
-		<title>Index</title>
-		<link rel="stylesheet" href="css/style.css">
-		<script>
-			
-		</script>
+		<title>Lab Time | Home</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<table>
+		<header  id="pageheader"> 
+			<center><img src="pic.png" style="width:200px;height:90%";></center>
+		</header> 
+		<table align="center">
+		<!--This creates the menu bar-->
 			<tr>
-				<td colspan="2" id="pageheader">
-					Application Header
-				</td>
-			</tr>
-			<tr>
-				<td id="mainnav">
-					<div class="menuitem">menu 1</div>
-					<div class="menuitem">menu 2</div>
-					<div class="menuitem">menu 3</div>
-					<div class="menuitem">menu 4</div>
-				</td>
-				<td id="content">
-					<div id="divPageMenu">
-						<span class="menuitem" >page menu 1</span>
-						<span class="menuitem" >page menu 2</span>
-						<span class="menuitem" >page menu 3</span>
-						<input type="text" id="txtSearch" />
-						<span class="menuitem">search</span>		
-					</div>
-					<div id="divStatus" class="status">
-						status message
-					</div>
-					<div id="divContent">
-						Content space
-						<span class="clickspot">click here </span>
-						<table id="tableExample" class="reportTable" width="100%">
-							<tr class="header">
-								<td>column1</td>
-								<td>column2</td>
-								<td>column3</td>
-								<td>column4</td>
-							</tr>
-							<tr class="row1">
-								<td>data example</td>
-								<td>123</td>
-								<td>01/01/2014</td>
-								<td>data</td>
-							</tr>
-							<tr class="row2">
-								<td>data example</td>
-								<td>123</td>
-								<td>01/01/2014</td>
-								<td>data</td>
-							</tr>
-					</div>
-				</td>
+				<td class="item">My Bookings</td>
+				<td class="item">Master Schedule</td>
+				<td class="item">Manage Users</td>
+				<td class="item">Logout</td>
 			</tr>
 		</table>
-	</body>
-</html>	
+			
+		<table id="tableformat" align="center">
+		<!--This creates the form in which the user enter the details-->
+			<!---->
+				<table class="reportTable">
+				<input class="button-add" onClick="'' " value="Add New Booking" style="float:right">
+							<tr class="header">
+							<th>Booking ID</th>
+							<th>Lab Name</th>
+							<th>Booking Date</th>
+							<th>Booking Time</th>
+							<th>Name of Organization</th>
+							<th>Event Name</th>
+							<th>Event Description</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							</tr>
+							
+							<?php
+							include_once("booking.php");
+							
+							if (isset ($_REQUEST['id'])){
+								
+								$userID = $_REQUEST['id'];
+							
+							$book = new booking();
+							
+							$booking = $book -> viewMyBooking($userID);
+							
+							if ($booking==false){
+								echo "Error";
+								exit();
+							}
+							
+							else
+							{
+								$row = $book ->fetch();
+							$counter =1;
+							while ($row!=false)
+							{
+								
+								if ($counter%2==0)
+								{
+								echo"<tr>
+				
+				<td bgcolor = #ffff66>{$row["booking_id"]}</td> <td bgcolor = #ffff66> {$row["labname"]} </td> <td bgcolor= #ffff66>{$row["bookingdate"]}</td>  <td bgcolor= #ffff66>{$row["bookingtime"]}</td> <td bgcolor= #ffff66>{$row["org_name"]}</td>
+				<td bgcolor= #ffff66>{$row["event_name"]}</td> <td bgcolor= #ffff66>{$row["event_description"]}</td>
+				<td bgcolor= #ffff66 width=3.5%> <a href = 'editbooking.php?booking_id={$row["booking_id"]}' ><img src='pencil.jpg' alt='edit' style='width:80%; height:45%;'> </a> </td>
+				<td bgcolor= #ffff66 width=3.5%> <a href = 'deletebooking.php?booking_id={$row["booking_id"]}&user_id={$row["user_id"]}' ><img src='delete.jpg' alt='delete' style='width:75%; height:15%;'></a></td>  
+				</tr>";	
+								}
+								
+								else
+								{
+									echo"<tr>
+				
+				<td>{$row["booking_id"]}</td> <td> {$row["labname"]} </td> <td>{$row["bookingdate"]}</td>  <td>{$row["bookingtime"]}</td> <td>{$row["org_name"]}</td>
+				<td>{$row["event_name"]}</td> <td>{$row["event_description"]}</td>
+				<td width=3.5%> <a href = 'editbooking.php?booking_id={$row["booking_id"]}' ><img src='pencil.jpg' alt='edit' style='width:80%; height:45%;'> </a> </td>
+				<td width=3.5%> <a href = 'deletebooking.php?booking_id={$row["booking_id"]}&user_id={$row["user_id"]}' ><img src='delete.jpg' alt='delete' style='width:75%; height:15%;'></a></td>  
+				</tr>";	
+								}
+							$counter++;
+							$row = $book ->fetch();
+							
+							}
+							}
+							}
+							?>
+
+				</table>	
+	</body> 
+</html>
