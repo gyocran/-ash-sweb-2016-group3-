@@ -30,6 +30,11 @@
     font-size:130%;
 }
 
+.item a {
+	text-decoration:none;
+	color:#1472A5;
+}
+
 /*this is the styling effect for a hover event over a link on the page. it is a class*/
 .item:hover{
 	cursor:hand;
@@ -127,7 +132,7 @@ input[type=submit]:hover{
 
 /*this is the styling effect of the body element*/
 body{
-	background-image: url("../UI/header.png") ;
+	background-image: url("header.png") ;
     background-repeat: no-repeat;
 	background-size: 100% 100%; 
 }
