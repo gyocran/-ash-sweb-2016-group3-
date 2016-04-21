@@ -1,3 +1,9 @@
+<html>
+	<head>
+		<title>Master Bookings</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
 <?php
 
 //include booking class
@@ -17,7 +23,7 @@ $dates = $obj->getDates();
  */
 $startDate = date("Y-m-d", strtotime($dates[0]));
 $endDate = date("Y-m-d", strtotime($dates[7]));
-echo $endDate;
+
 //array of booking times
 $times = array("8:00-9:00 am", "9:00-10:00 am", "10:00-11:00 am",
     "11:00-12:00 pm", "12:00-1:00 pm", "1:00-2:00 pm", "2:00-3:00 pm",
@@ -47,25 +53,8 @@ if (!$obj->viewBookingByWeek($startDate, $endDate)) {
     }
 }
 
-//Table heading
-//echo "<table cellspacing=1 border=1 cellpadding=3>   
-//           <tr>
-//           <th colspan=2></th>
-//           <th colspan=10>Time</th>            
-//            </tr>";
-//echo "<tr>
-////            <th>Date</th>
-////            <th>LAB</th>";
-//foreach ($times as $value) {
-//    echo "<td>$value</td>";
-//}
-//echo "</tr>";
-//echo "</table>";
-//print_r($weekBookings);
-//$t = date("Y-m-d", strtotime($dates[0]));
-//echo "j $t";
-
 foreach ($dates as $valOne) {
+    $i = 0; //count to make date print only once in date column
     echo "<table cellspacing=1 border=1 cellpadding=3>   
            <tr>
            <th colspan=2></th>
@@ -79,8 +68,13 @@ foreach ($dates as $valOne) {
         echo "<td>$value</td>";
     }
     echo "</tr>";
+
     foreach ($labs as $valTwo) {
-        echo "<tr><td rowspan=0>$valOne</td>"; //print out the date
+
+        //if $i==0 print out the date so it spans all rows
+        if ($i == 0)
+            echo "<tr><td rowspan=4>$valOne</td>";
+
         echo "<td>{$valTwo['labname']}</td>"; //print out the lab name
         foreach ($times as $valThree) {
             if (in_array(array('bookingdate' =>
@@ -90,11 +84,12 @@ foreach ($dates as $valOne) {
                 echo "<td>Booked</td>";
             } else {
                 echo "<td></td>";
-//                echo "</table>";
             }
-//            echo "</table>";
         }
         echo "</tr>";
+        $i++;
     }
     echo "</table>";
 }
+?>
+</html>

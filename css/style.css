@@ -1,113 +1,281 @@
-.clickspot{
-	text-decoration:underline;
-	color:blue;
-	cursor:pointer
+#pageheader{
+	height: 18%;
+	width: 100%;
+    background-color: none;
+    border: 0;
 }
-.status{
-	background-color:Yellow
-}
-.error{
-	color:Red;
-	background-color:Yellow
-}
-
-.menuitem {
-	text-decoration:underline;
-	color:blue;
-	cursor:hand
-}
-.menuitem:hover{
-	text-decoration:underline;
-	cursor:hand;
-	font-weight:bold;
-	background-color:Silver
+#navbar{
+	background-color: #A32222; #1472A5
+	width: 100%;
+	height: 7%;
+	border-radius: 20px;
+	margin - left: 0px;
+	margin - right: auto;
 }
 
-#pageheader
-{
-    height: 1in;
-    background-color: #FFCC66;
-    font-size: large;
-    text-align: center;
+#tableformat{
+	font-size: large;
+	align:center;
+	height: 70%;
+	width: 35%;
+	position: absolute;
+	padding:0.5%;
+	top: 22%;
+	left:35%;
 }
-
-#mainnav{
-	width:2in;
-	vertical-align:top
-}
-
 
 #content {
-	width:10in;
-	vertical-align:top
+	padding-top: 10px;
+	width:100%;
+	height: 70%;
+	background-color:white;
+	padding-bottom: 10px;
+}
+
+#leftdiv{
+	background-color:none;
+	width: 10%;
+	height:100%;
+	float: left;
+}
+#rightdiv{
+	background-color:none;
+	width: 10%;
+	height:100%;
+	float: left;
+}
+
+#middlediv{
+	width:80%;
+	height:100%;
+	float: left;
+}
+
+#footer{
+	width:100%;
+	height: 5%;
+	background-color:#A32222;
+}
+
+#background{
+	background-color:#A32222;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+#homediv1{
+	height:73%;
+	width:60%;
+	float:left;
 	
+	padding-top: 9em;
+	text-align: center;
+	color: #A32222;
+	text-decoration: bold;
+	align-content: center;
+	background-image: url('images/img.png');
+	background-size: cover;
 }
 
-.reportTable 
-{
-    border:1px;
-    border-collapse:collapse;
+#homediv2{
+	height:100%;
+	width:40%;
+	padding-top: 100px;
+	float:left;
+	color: white;
+
 }
 
-.reportTable .header
-{
-    background-color: #CC6600;
-    text-transform: uppercase;
-    color: White;
+#maindiv{
+	right:0;
+	left:0;
+	top:0;
+	bottom:0;
+	background-color: white;
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	vertical-align: middle;
+	margin: auto;
+	box-shadow: 8px 8px 8px 2px rgba(0,0,0,0.4) ;
+
 }
 
-.reportTable .row1
-{
-    background-color: #FFE0B3;
+.headeritem{
+	cursor:hand;
+	padding-right: 10px;
 }
 
-.reportTable .row2
-{
-    background-color:White;
+#loginbutton{
+  width:240px;
+  height:35px;
+  display:block;
+  font-size:16px;
+  font-weight:bold;
+  color:#fff;
+  text-transform:uppercase;
+  text-align:center;
+  padding-top:6px;
+  margin: 29px 0 0 0px;
+  position:relative;
+  cursor:pointer;  
+  background-color: #A32222;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius:5px;
+  box-shadow: inset 0px 1px 0px grey, 0px 2px 0px 0px grey, 0px 7px 5px #999;
 }
 
-.reportTable tr:hover
-{
-    background-color:Yellow
+.logout{
+	cursor:hand;
+	font-size: 19;
+	color: #A32222;
+	padding-top: 5em;
+	padding-right: 3px;
+	position: relative;
+    display: inline-block;
+
 }
 
-.tableForm .label
-{
-    background-color: #CC6600;
-    text-transform:capitalize;
-    color: White;
-    text-align:right;
+.item {
+	text-decoration:none;
+    color:white;
+	cursor:hand;
+	text-align: center;
+	width: 300px;
+    padding: 10px;
+    font-size:100%;
 }
 
-.tableForm .field
-{
-    background-color: #FFAE35;
-}
-.popupMenu
-{
-    background-color: #DC7518;
-    position: absolute;
-    display:none;
-    width: auto;
+.item:hover{
+	cursor:hand;
+	font-weight:bold;
+	background-color:none;
 }
 
-.popupMenu div
-{
-    color: #FFFFFF;
-    text-decoration: underline;
+.logout:hover{
+	cursor:hand;
+	font-weight:bold;
+	background-color:none;
 }
 
-.popupMenu div:hover
-{
-    color: #FFFFFF;
-    text-decoration: underline;
-    background-color: #CC6600;
+.login {
+  background: #eceeee;
+  border-radius: 6px;
+  height: 257px;
+  margin: 20px auto 0;
+  width: 298px;
+}
+.login h1 {
+  border-bottom: 1px solid #a6abaf;
+  border-radius: 6px 6px 0 0;
+  box-sizing: border-box;
+  color: #727678;
+  display: block;
+  height: 43px;
+  font: 600 14px/1 'Open Sans', sans-serif;
+  padding-top: 14px;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2), 0 1px 0 #fff;
 }
 
-.popupForm
-{
-    background-color: #DC7518;
-    position: absolute;
-    display:none;
-    width: auto;
+.show-password {
+  display: block;
+  height: 16px;
+  margin: 26px 0 0 28px;
+  width: 87px;
+}
+
+.forgot {
+  color: #7f7f7f;
+  display: inline-block;
+  float: right;
+  font: 12px/1 sans-serif;
+  left: -19px;
+  position: relative;
+  text-decoration: none;
+  top: 5px;
+  transition: color .4s;
+}
+
+.forgot:hover { color: #A32222}
+
+
+html, body{
+    height: 100%;
+    width: 100%;
+    margin:0;
+    padding: 0;
+    font-family: Verdana, arial;
+}
+
+input[type="login"]{
+  border: 1px solid #a1a3a3;
+  border-radius: 4px;
+  box-shadow: 0 1px #fff;
+  box-sizing: border-box;
+  color: #696969;
+  height: 39px;
+  margin: 31px 0 0 0px;
+  padding-left: 30px;
+  transition: box-shadow 0.3s;
+  width: 240px;
+
+}
+input[type="password"], input[type="text"], input[type="date"] {
+  border: 1px solid #a1a3a3;
+  border-radius: 4px;
+  box-shadow: 0 1px #fff;
+  box-sizing: border-box;
+  color: #696969;
+  height: 39px;
+  margin: 31px 0 0 0px;
+  padding-left: 30px;
+  transition: box-shadow 0.3s;
+  width: 440px;
+}
+
+input[type="password"]:focus, input[type="text"]:focus {
+  box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
+  outline: 0;
+}
+
+select{
+  border: 1px solid #a1a3a3;
+  border-radius: 4px;
+  box-shadow: 0 1px #fff;
+  box-sizing: border-box;
+  color: #696969;
+  height: 39px;
+  margin: 31px 0 0 0px;
+  padding-left: 30px;
+  transition: box-shadow 0.3s;
+  width: 440px;
+}
+
+input[type="submit"] {
+  width:140px;
+  height:35px;
+  display:block;
+  font-size:16px;
+  font-weight:bold;
+  color:#fff;
+  text-transform:uppercase;
+  text-align:center;
+  padding-top:6px;
+  margin: 29px 0 0 0px;
+  position:relative;
+  cursor:pointer;  
+  background-color: #A32222;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius:5px;
+  box-shadow: inset 0px 1px 0px grey, 0px 2px 0px 0px grey, 0px 7px 5px #999;
+}
+
+input[type="submit"]:active {
+  top:3px;
+  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #31524d, 0px 5px 3px #999;
 }
