@@ -36,7 +36,15 @@
 			include_once("bookings.php");
 			$obj= new bookings();
 			
-					
+			//calls the add function and checks 
+			if($obj->addBookings($userid, $org_name,$event_name,$event_description,$labname,$bookingdate,$bookingtime))
+			{
+				echo '{"result":1, "message":"Booking added"}';
+			}
+			else{
+			
+				echo  '{"result":0, "message":"Booking was not added"}';
+			}			
 	}
 
 ?>
