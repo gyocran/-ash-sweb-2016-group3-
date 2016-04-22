@@ -1,13 +1,15 @@
 <?php
-//The session starts when the page is open
+	/*
+	*The session starts when the page is open
+	*/
 	session_start();
 
-		if(!isset($_SESSION['USER']['user_id'])){ //The sessions is checked for an id
-			header("Location: login.php");	 	 //If there is no id, it returns to the login page
+		if(!isset($_SESSION['USER']['user_id'])){ /**The sessions is checked for an id*/
+			header("Location: login.php");	 	 /**If there is no id, it returns to the login page*/
 			exit();
 		}
 
-	$firstname = $_SESSION['USER']['firstname'];  //The first name of the user is saved an displayed in the html
+	$firstname = $_SESSION['USER']['firstname'];  /**The first name of the user is saved an displayed in the html*/
 	echo "<span style = 'color:#A32222; #1472A5; padding: 20px; position: absolute; top: 11%;' ><b> Welcome $firstname </b> </span>";
 ?>
 
@@ -24,10 +26,15 @@
 
 		<script type="text/javascript">
 
-			//This function makes requests for the ajax page to add a booking
+			/*
+			*addbooking
+			*This function makes requests for the ajax page to add a booking
+			*/
 			function addbooking()
 			{	
-				//the various valaues entered by the user are stored in variables
+				/*
+				*the various valaues entered by the user are stored in variables
+				*/
 				var name = $("#textname").val();
 				var id = $("#id").val();
 				var cmd =$("#cmd").val();
@@ -38,16 +45,16 @@
 				var bookingdate =  $("#bookingdate").val();
 				var bookingtime =  $("#bookingtime").val();
 
-				//The variables are added to the ajax page url
-				var ajaxurl = "bookingajax.php?"+'id ='+ id + '&cmd ='+ cmd +'&org_name ='+ org_name + '&event_name =' + event_name + '&event_description =' + event_description +'&labname =' + labname  + '&bookingdate =' + bookingdate + '&bookingtime =' + bookingtime;
+				/**The variables are added to the ajax page url*/
+				var ajaxurl = "bookingajax.php?"+'id='+ id + '&cmd='+ cmd +'&org_name='+ org_name + '&event_name=' + event_name + '&event_description=' + event_description +'&labname=' + labname  + '&bookingdate=' + bookingdate + '&bookingtime=' + bookingtime;
 				
-				//This checks if all fields are filled
+				/**This checks if all fields are filled*/
 				if (org_name == '' || event_name == '' || event_description == '' ||labname == '' || bookingdate == ''  || bookingtime == '') {
 				alert("Please Fill All Fields");
 				}
 
 				else{
-					//Makes a request to the ajax page with the following settings
+					/**Makes a request to the ajax page with the following settings*/
 					$.ajax( ajaxurl, {
 							async:true,
 							complete: addbookingcomplete //calls the addbookingcomplete function after the request is complete
@@ -56,17 +63,20 @@
 				}
 			}
 			
-			//This function recieves the result from the ajax page after the request has been made
+			/*
+			*addbookingcomplete
+			*This function recieves the result from the ajax page after the request has been made
+			*/
 			function addbookingcomplete(xhr,status){
 				
-				if (status!="status"){
-					alert("Error while adding booking"); //checks if request was carried out successfully and prints out an alert if it was not
+				if (status!="success"){
+					alert("Error while adding booking"); /**checks if request was carried out successfully and prints out an alert if it was not*/
 					return;
 				}
 
-				var obj = $.parseJSON(xhr.resposeText); //converts the JSON object 
+				var obj = $.parseJSON(xhr.responseText); /**converts the JSON object */
 
-				alert(obj.message);     //displays the JSON message
+				alert(obj.message);     /**displays the JSON message*/
 
 	
 			}			
@@ -81,7 +91,7 @@
 				<center><img src="images/logo.gif" style="width:180px;height:105%";></center>
 			</div>
 			<div style="width:10%; float: left;">
-					<span class= "logout"> Logout</span>
+					<span class= "logout" onClick="location.href='logout.php'"> Logout</span>
 			</div>
 		</header> 
 
@@ -166,7 +176,6 @@
 						<tr>
 							<td>
 									<input type="button" style="float:right"; onclick="addbooking()" value="Submit">
-										<input type="submit"  value="Cancel">
 									</td>
 								</tr>
 							</form>
