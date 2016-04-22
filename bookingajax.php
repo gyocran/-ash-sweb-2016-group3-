@@ -1,5 +1,17 @@
-<?php
-//check command
+<?php 
+/*
+*@author Maame Yaa Afriyie Poku
+*/
+
+/*
+*Add Booking Ajax
+*/
+
+
+/*
+*check command
+*/
+
 	if(!isset($_REQUEST['cmd'])){
 		echo "Command is not provided";
 		exit();
@@ -17,6 +29,9 @@
 			break;
 	}
 
+	/*
+	*Add Booking function
+	*/
 	// function to add booking
 	function addBooking(){
 		if(!isset($_REQUEST['id'])){
@@ -32,18 +47,18 @@
 			$bookingtime=$_REQUEST['bookingtime'];
 
 
-			//creates an object of the class
+			/**creates an object of the class*/
 			include_once("bookings.php");
 			$obj= new bookings();
 			
-			//calls the add function and checks 
+			/**calls the add function and checks */
 			if($obj->addBookings($userid, $org_name,$event_name,$event_description,$labname,$bookingdate,$bookingtime))
 			{
-				echo '{"result":1, "message":"Booking added"}';
+				echo '{"result":1, "message":"Booking added"}'; //JSON message sent
 			}
 			else{
 			
-				echo  '{"result":0, "message":"Booking was not added"}';
+				echo  '{"result":0, "message":"Booking was not added"}'; //JSON message sent
 			}			
 	}
 
