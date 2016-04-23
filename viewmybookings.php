@@ -120,6 +120,24 @@
 			}
 			
 			/**
+			*customized function for confirming or rejecting  delete request
+			*/
+			function confirmDeleteDialog(obj){
+				current_object = obj;
+				current_row_id = current_object.parentNode.parentNode.rowIndex;
+				current_booking_id = $(current_object).closest('tr').attr('id');
+				
+				dhtmlx.confirm(
+					{
+						text:"Do you really want to delete this record?", 
+						callback:function(result){
+							if (result) { deleteBooking(); }
+						}
+					}
+				);
+			}
+			
+			/**
 			*makes an AJAX call to the server to delete a booking
 			*/
 			function deleteBooking(){
