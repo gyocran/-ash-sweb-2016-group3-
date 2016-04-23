@@ -130,6 +130,35 @@
 					{async:true, complete:deleteBookingComplete}	
 				);
 			}
+			
+			/**
+			*callback function for deleteBooking ajax call
+			*/
+			function deleteBookingComplete(xhr,status){
+				if(status!="success"){
+					dhtmlx.message("error while deleting booking");
+					return;
+				}
+
+				// Get JSON String
+				var JSONString = xhr.responseText;
+				
+				// Convert JSON String to JavaScript Object
+				 var JSONObject = $.parseJSON(JSONString);
+				 
+				 // Dump all data of the Object in the console
+				 console.log(JSONObject);
+				 
+				if(JSONObject.result == 1){
+					document.getElementById("report").deleteRow(current_row_id);
+				
+					dhtmlx.message.expire = 10000; 
+					dhtmlx.message(JSONObject.message);
+				}else{
+					dhtmlx.message.expire = 10000;
+					dhtmlx.message(JSONObject.message);
+				}
+			}
 		</script>
 
 		<!-- Where main content will be -->
