@@ -177,6 +177,37 @@
 					dhtmlx.message(JSONObject.message);
 				}
 			}
+			
+			/**
+			*fetches  booking details from server to fill edit form
+			*/
+			function fetchCurrentBookingDetails(booking_id, user_id){
+				$(function(){
+					$.getJSON("bookingajax.php?cmd=0"+"&booking_id="+booking_id+"&user_id="+user_id, function(data){
+					
+							var labs = "<option value ='Dlab'>Dlab</option><option value ='englab'>englab</option>"+
+							"<option value ='lab221'>lab221</option><option value ='lab222'>lab222</option>"+
+							"<option value="+data.labname+" selected>"+data.labname+"</option>";
+							
+							var time = "<option value ='8:00-9:00 am'>8:00-9:00 am</option><option value ='9:00-10:00 am'>9:00-10:00 am</option>"+
+							"<option value="+data.bookingtime+" selected>"+data.bookingtime+"</option>"+
+							"<option value ='10:00-11:00 am'>10:00-11:00 am</option><option value ='11:00-12:00 am'>11:00-12:00 am</option>"+
+							"<option value ='12:00-1:00 pm'>12:00-1:00 pm</option><option value ='1:00-2:00 pm'>1:00-2:00 pm</option>"+
+							"<option value ='2:00-3:00 pm'>2:00-3:00 pm</option><option value ='3:00-4:00 pm'>3:00-4:00 pm</option>"+
+							"<option value ='4:00-5:00 pm'>4:00-5:00 pm</option><option value ='5:00-6:00 pm'>5:00-6:00 pm</option>";
+							
+							$("form#editForm input#cmd").val('4');
+							$("form#editForm input#booking_id").val(data.booking_id);
+							$("form#editForm input#user_id").val(data.user_id);
+							$("form#editForm input#org_name").val(data.org_name);
+							$("form#editForm input#event_name").val(data.event_name);
+							$("form#editForm input#event_description").val(data.event_description);
+							$("form#editForm #labname").html(labs);
+							$("form#editForm input#bookingdate").val(data.bookingdate);
+							$("form#editForm #bookingtime").html(time);
+					});
+				});
+			}
 		</script>
 
 		<!-- Where main content will be -->
