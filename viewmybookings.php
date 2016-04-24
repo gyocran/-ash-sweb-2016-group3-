@@ -208,6 +208,31 @@
 					});
 				});
 			}
+			
+			/**
+			*shows a form with booking records ready to be editted and submitted
+			*/
+			function showEditForm(obj){
+				current_object = obj;
+				current_row_id = current_object.parentNode.parentNode.rowIndex;
+				current_booking_id = $(current_object).closest('tr').attr('id');
+				
+				$("#tableformat #editForm").html("");
+				var edit_form = "<tr><td><input  type= 'hidden' id='cmd' value ='4' /></td></tr>" +
+							"<tr><td><input type='hidden' id='booking_id'  value ="+current_booking_id+" /></td></tr>"+
+							"<tr><td><input type='hidden' id='user_id'  value ="+current_user_id+" /></td></tr>"+
+							"<tr><td><input type='text'  id='org_name'  value ='' /></td></tr>"+
+							"<tr><td><input type='text'  id='event_name'  value ='' /></td></tr>"+
+							"<tr><td><input type='text'  id='event_description'  value ='' /></td></tr>"+
+							"<tr><td><select id='labname'></select></td></tr>"+
+							"<tr><td><input type='date' id='bookingdate'  value ='' /></td></tr>"+
+							"<tr><td><select id = 'bookingtime'></select></td></tr>"+
+							"<tr><td><button style='float:right'; onclick='editBooking()' >Update</button><input type='submit'  value='Cancel' /></td></tr>";
+				
+				$(edit_form).appendTo("#tableformat #editForm");
+				
+				fetchCurrentBookingDetails(current_booking_id, current_user_id);
+			}
 		</script>
 
 		<!-- Where main content will be -->
