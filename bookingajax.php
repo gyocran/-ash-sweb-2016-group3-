@@ -18,6 +18,9 @@
 		case 3:
 			deleteBooking();
 			break;
+		case 4:
+			editBooking();
+			break;
 		default:
 			echo '{"result":0, "message":"wrong command"}';
 			break;
@@ -82,6 +85,44 @@
 			echo '{"result":0, "message":"Booking not found"}';
 		}
 		
+	}
+	
+	/**
+	*edit a specified booking record
+	*/
+	function editBooking(){		
+		if(!isset($_REQUEST['user_id'])){
+			echo  '{"result":0, "message":"User id not provided"}';
+			exit();
+		}
+		
+		$user_id = $_REQUEST['user_id'];
+	
+		if (!isset($_REQUEST['booking_id'])){
+			echo  '{"result":0, "message":"Booking id not provided"}';
+			exit();
+		}
+		
+		$booking_id = $_REQUEST['booking_id'];
+		
+		include_once("booking.php");
+		$bookingObj=new booking();
+		
+		$user_id = $_REQUEST['user_id'];
+		$org_name = $_REQUEST['org_name'];
+		$event_name = $_REQUEST['event_name'];
+		$event_description = $_REQUEST['event_description'];
+		$labname = $_REQUEST['labname'];
+		$bookingdate = $_REQUEST['bookingdate'];
+		$bookingtime = $_REQUEST['bookingtime'];
+		
+		$update_result = $bookingObj->updateBooking($booking_id, $user_id, $org_name, $event_name, $event_description, $labname, $bookingdate, $bookingtime);
+					
+		if($update_result){
+			echo '{"result":1, "message":"Booking updated"}';
+		}else{
+			echo  '{"result":0, "message":"Booking was not updated"}';
+		}
 	}
 	
 	// function to view user booking
