@@ -9,6 +9,9 @@
 	$cmd=$_REQUEST['cmd'];
 	switch($cmd)
 	{
+		case 0:
+			getSpecifiedBooking();
+			break;
 		case 2:
 			myBookings();
 			break;
@@ -46,6 +49,37 @@
 			echo  '{"result":0, "message":"Booking was not Deleted"}';
 		}else{
 			echo '{"result":1, "message":"Booking Successfully Deleted"}';
+		}
+		
+	}
+	
+	/**
+	*get a specified booking record
+	*/
+	function getSpecifiedBooking(){
+		if(!isset($_REQUEST['user_id'])){
+			echo  '{"result":0, "message":"User id not provided"}';
+			exit();
+		}
+		
+		$user_id = $_REQUEST['user_id'];
+	
+		if (!isset($_REQUEST['booking_id'])){
+			echo  '{"result":0, "message":"Booking id not provided"}';
+			exit();
+		}
+		
+		$booking_id = $_REQUEST['booking_id'];
+		
+		include_once("booking.php");
+		$bookingObj = new booking();
+		$bookingObj->getBooking(" booking_id = '$booking_id' and user_id = '$user_id' ");
+		$booking_details = $bookingObj->fetch();
+		
+		if ($booking_details){
+			echo json_encode($booking_details);
+		}else{
+			echo '{"result":0, "message":"Booking not found"}';
 		}
 		
 	}
