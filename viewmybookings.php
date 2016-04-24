@@ -127,6 +127,7 @@
 				current_row_id = current_object.parentNode.parentNode.rowIndex;
 				current_booking_id = $(current_object).closest('tr').attr('id');
 				
+				//confirm delete action
 				dhtmlx.confirm(
 					{
 						text:"Do you really want to delete this record?", 
@@ -168,11 +169,14 @@
 				 console.log(JSONObject);
 				 
 				if(JSONObject.result == 1){
+					//delete the record from table
 					document.getElementById("report").deleteRow(current_row_id);
-				
+					
+					// show success message
 					dhtmlx.message.expire = 10000; 
 					dhtmlx.message(JSONObject.message);
 				}else{
+					// show failure message
 					dhtmlx.message.expire = 10000;
 					dhtmlx.message(JSONObject.message);
 				}
@@ -184,11 +188,13 @@
 			function fetchCurrentBookingDetails(booking_id, user_id){
 				$(function(){
 					$.getJSON("bookingajax.php?cmd=0"+"&booking_id="+booking_id+"&user_id="+user_id, function(data){
-					
+							
+							//select options for lab
 							var labs = "<option value ='Dlab'>Dlab</option><option value ='englab'>englab</option>"+
 							"<option value ='lab221'>lab221</option><option value ='lab222'>lab222</option>"+
 							"<option value="+data.labname+" selected>"+data.labname+"</option>";
 							
+							//select options for booking time
 							var time = "<option value ='8:00-9:00 am'>8:00-9:00 am</option><option value ='9:00-10:00 am'>9:00-10:00 am</option>"+
 							"<option value="+data.bookingtime+" selected>"+data.bookingtime+"</option>"+
 							"<option value ='10:00-11:00 am'>10:00-11:00 am</option><option value ='11:00-12:00 am'>11:00-12:00 am</option>"+
@@ -196,6 +202,7 @@
 							"<option value ='2:00-3:00 pm'>2:00-3:00 pm</option><option value ='3:00-4:00 pm'>3:00-4:00 pm</option>"+
 							"<option value ='4:00-5:00 pm'>4:00-5:00 pm</option><option value ='5:00-6:00 pm'>5:00-6:00 pm</option>";
 							
+							//set values of form fields
 							$("form#editForm input#cmd").val('4');
 							$("form#editForm input#booking_id").val(data.booking_id);
 							$("form#editForm input#user_id").val(data.user_id);
@@ -217,6 +224,7 @@
 				current_row_id = current_object.parentNode.parentNode.rowIndex;
 				current_booking_id = $(current_object).closest('tr').attr('id');
 				
+				// create the form
 				$("#tableformat #editForm").html("");
 				var edit_form = "<tr><td><input  type= 'hidden' id='cmd' value ='4' /></td></tr>" +
 							"<tr><td><input type='hidden' id='booking_id'  value ="+current_booking_id+" /></td></tr>"+
@@ -230,14 +238,16 @@
 							"<tr><td><button style='float:right'; onclick='editBooking()' >Update</button><input type='submit'  value='Cancel' /></td></tr>";
 				
 				$(edit_form).appendTo("#tableformat #editForm");
-				
+			
+				//set values for form fields
 				fetchCurrentBookingDetails(current_booking_id, current_user_id);
 			}
 			
 			/**
 			*makes an AJAX call to the server to edit a booking
 			*/
-			function editBooking(){	
+			function editBooking(){
+				//get values from form fields
 				var cmd =$("#cmd").val();
 				var booking_id = $("#booking_id").val();
 				var user_id = $("#user_id").val();
