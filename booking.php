@@ -15,7 +15,7 @@ class booking extends adb{
 	function __construct(){
 	}
 	
-		/**
+	/**
 	*Adds a new booking
 	*@param int user_id user id
 	*@param string org_name Organization name
@@ -94,7 +94,6 @@ class booking extends adb{
 		//booking slot is not available
 		if($this->checkSlotAvailabilty($labName, $bookingDate, $bookingTime) != null){
 			$row = $this->checkSlotAvailabilty($labName, $bookingDate, $bookingTime);
-			//echo print_r($row);
 			
 			//check whether current row with similar labname,bookingdate and bookingtime is the same row being updated
 			if ($bookingId == $row['booking_id']){
