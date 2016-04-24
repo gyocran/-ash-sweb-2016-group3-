@@ -233,6 +233,34 @@
 				
 				fetchCurrentBookingDetails(current_booking_id, current_user_id);
 			}
+			
+			/**
+			*makes an AJAX call to the server to edit a booking
+			*/
+			function editBooking(){	
+				var cmd =$("#cmd").val();
+				var booking_id = $("#booking_id").val();
+				var user_id = $("#user_id").val();
+				var org_name = $("#org_name").val();
+				var event_name = $("#event_name").val();
+				var event_description = $("#event_description").val();
+				var labname =  $("#labname").val();
+				var bookingdate =  $("#bookingdate").val();
+				var bookingtime =  $("#bookingtime").val();
+
+				var ajaxPageUrl = "bookingajax.php?"+ "&cmd="+ cmd +"&booking_id="+ current_booking_id +"&user_id="+ current_user_id +"&org_name="+ org_name + 
+				"&event_name=" + event_name + "&event_description=" + event_description +"&labname=" + 
+				labname  + "&bookingdate=" + bookingdate + "&bookingtime=" + bookingtime;
+				
+				if (org_name == "" || event_name == "" || event_description == "" ||labname == "" || bookingdate == ""  || bookingtime == null) {
+					dhtmlx.message("Please Fill All Form Fields");
+				}else{
+					$.ajax( 
+						ajaxPageUrl, 
+						{async:true, complete: editBookingComplete}
+					);		
+				}
+			}
 		</script>
 
 		<!-- Where main content will be -->
