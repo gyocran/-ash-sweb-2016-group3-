@@ -261,6 +261,24 @@
 					);		
 				}
 			}
+			
+			/**
+			*callback function for editBooking ajax call
+			*/
+			function editBookingComplete(xhr,status){
+				
+				if (status!="success"){
+					dhtmlx.message("Error while updating booking"); 
+					return;
+				}
+
+				var JSONString = xhr.responseText;
+				
+				var JSONObject = $.parseJSON(JSONString);
+				
+				dhtmlx.message.expire = 10000;
+				dhtmlx.message(JSONObject.message);
+			}
 		</script>
 
 		<!-- Where main content will be -->
