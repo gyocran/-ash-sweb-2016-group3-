@@ -7,7 +7,7 @@ include_once("adb.php");
 *Labs  class
 */
 class labs extends adb{
-	function __construct(){
+	function labs(){
 	
 	}
 
@@ -22,11 +22,11 @@ class labs extends adb{
 }
 
 //Test
-/*$obj=new labs();
+$obj=new labs();
 if(!$obj->query("select * from sweb_lab"))
 {
 	echo "error";
 	exit();
 }
-print_r($obj->fetch());*/
+print_r($obj->fetch());
 ?>

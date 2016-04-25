@@ -15,7 +15,7 @@ class booking extends adb{
 	function __construct(){
 	}
 	
-	/**
+		/**
 	*Adds a new booking
 	*@param int user_id user id
 	*@param string org_name Organization name
@@ -87,7 +87,7 @@ class booking extends adb{
 						bookingdate = '$bookingDate',
 						bookingtime = '$bookingTime'
 					WHERE booking_id = '$bookingId' and user_id = '$userId' ";
-		
+
 			return $this->query($strQuery);
 		}
 		

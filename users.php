@@ -31,7 +31,7 @@ class users extends adb{
 		
 		$strQuery="INSERT INTO sweb_user SET
 					username = '$username',
-					password = '$password',
+					password = MD5('$password'),
 					firstname = '$firstname',
 					lastname = '$lastname',
 					usergroup = '$usergroup', 
@@ -46,13 +46,26 @@ class users extends adb{
 	*@return boolean true if successful, else false
 	*/
 	function getUsers($filter=false){
-		$strQuery="SELECT * FROM sweb_user";
+		$strQuery="SELECT user_id, username, firstname, lastname, permission, 
+					sweb_user.usergroup, status, groupname, permission+0 as npermission, status+0 as nstatus 
+					FROM sweb_user 
+					LEFT JOIN sweb_usergroup 
+					ON sweb_user.usergroup = sweb_usergroup.usergroup_id";
 		
 		if($filter){
 			$strQuery=$strQuery . " where $filter";
 		}
-		
 		return $this->query($strQuery);
+	}
+	
+	function getUser($usercode){
+		$filter="user_id = $usercode";
+		
+		if(!$this->getUsers($filter)){
+			return false;
+		}
+		
+		return $this->fetch();
 	}
 	
 	/**
@@ -97,7 +110,7 @@ class users extends adb{
 	function editUser($usercode,$username,$firstname,$lastname,$password,$usergroup,$permission,$status){
 		$strQuery = "UPDATE sweb_user SET
 						username = '$username',
-						password = '$password',
+						password = MD5('$password'),
 						firstname = '$firstname',
 						lastname = '$lastname',
 						usergroup = '$usergroup', 

@@ -48,10 +48,10 @@
 			<table align="center">
 			<!--This creates the menu bar-->
 				<tr>
-					<td class="item">My Bookings</td>
-					<td class="item">Master Schedule</td>
-					<td class="item">Manage Users</td>
-					<td class="item" onclick="location.href='addbooking.php'">+ Add a booking</td>
+					<td class="item" onclick="location.href='viewmybookings.php'">My Bookings</td>
+					<td class="item" onclick="#'">Master Schedule</td>
+					<td class="item" onclick="location.href='manage_users.php'">Manage Users</td>
+					<td class="item" onclick="#">+ Add a booking</td>
 				</tr>
 			</table>	
 		</div>
@@ -61,6 +61,7 @@
 			var current_booking_id;
 			var current_row_id;
 			var current_user_id = <?php echo $_SESSION['USER']['user_id']; ?>;
+			
 			/*
 			callback function for view booking method
 			*/
@@ -82,9 +83,9 @@
 				{
 					// printing the table headers
 					$("#report thead").html("");
-					var dataHeader = "<tr>" + "<th>" + "Booking ID" + "</th>" + "<th>" + "Lab Name" + "</th>" + "<th>" + 
-					 "Booking Date" + "</th>" + "<th>" + "Booking Time" + "</th>" + "<th>" + "Name of Organization" + "</th>" +
-					"<th>" + "Event Name" + "</th>"+ "<th>" + "Event Description" + "</th>" + "<th>" + " " + "</th>"+
+					var dataHeader = "<tr>" + "<th id='col-bookId'>" + "Booking ID" + "</th>" + "<th id='col-lab'>" + "Lab Name" + "</th>" + "<th id='col-date'>" + 
+					 "Booking Date" + "</th>" + "<th id='col-time'>" + "Booking Time" + "</th>" + "<th id='col-orgName'>" + "Name of Organization" + "</th>" +
+					"<th id='col-eventName'>" + "Event Name" + "</th>"+ "<th id='col-eventDesc'>" + "Event Description" + "</th>" + "<th>" + " " + "</th>"+
 					"<th>" + " " + "</th>"+ "</tr>";
 					$(dataHeader).appendTo("#report thead");
 					
@@ -232,10 +233,11 @@
 							"<tr><td><input type='text'  id='org_name'  value ='' /></td></tr>"+
 							"<tr><td><input type='text'  id='event_name'  value ='' /></td></tr>"+
 							"<tr><td><input type='text'  id='event_description'  value ='' /></td></tr>"+
-							"<tr><td><select id='labname'></select></td></tr>"+
+							"<tr><td><select name='labname' id='labname'></select></td></tr>"+
 							"<tr><td><input type='date' id='bookingdate'  value ='' /></td></tr>"+
-							"<tr><td><select id = 'bookingtime'></select></td></tr>"+
-							"<tr><td><button style='float:right'; onclick='editBooking()' >Update</button><input type='submit'  value='Cancel' /></td></tr>";
+							"<tr><td><select name='bookingtime' id ='bookingtime'></select></td></tr>"+
+							"<tr><td><input id='updateClick' type='submit' value='Update' style='float:right';  onclick='editBooking(event)'/>"+
+							"<input id='closeEditFormBtn' type='submit' value='Close/Cancel'  onclick='closeEditForm(event)'/></td></tr>";
 				
 				$(edit_form).appendTo("#tableformat #editForm");
 			
@@ -246,7 +248,9 @@
 			/**
 			*makes an AJAX call to the server to edit a booking
 			*/
-			function editBooking(){
+			function editBooking(e){
+				e.returnValue = e.preventDefault && e.preventDefault() ? false : false;
+				
 				//get values from form fields
 				var cmd =$("#cmd").val();
 				var booking_id = $("#booking_id").val();
@@ -254,15 +258,15 @@
 				var org_name = $("#org_name").val();
 				var event_name = $("#event_name").val();
 				var event_description = $("#event_description").val();
-				var labname =  $("#labname").val();
+				var labname =  $('#labname').find(":selected").text();
 				var bookingdate =  $("#bookingdate").val();
-				var bookingtime =  $("#bookingtime").val();
+				var bookingtime = $('#bookingtime').find(":selected").text();
 
 				var ajaxPageUrl = "bookingajax.php?"+ "&cmd="+ cmd +"&booking_id="+ current_booking_id +"&user_id="+ current_user_id +"&org_name="+ org_name + 
 				"&event_name=" + event_name + "&event_description=" + event_description +"&labname=" + 
 				labname  + "&bookingdate=" + bookingdate + "&bookingtime=" + bookingtime;
 				
-				if (org_name == "" || event_name == "" || event_description == "" ||labname == "" || bookingdate == ""  || bookingtime == null) {
+				if (org_name == "" || event_name == "" || event_description == "" ||labname == "" || bookingdate == ""  || bookingtime == "") {
 					dhtmlx.message("Please Fill All Form Fields");
 				}else{
 					$.ajax( 
@@ -286,8 +290,37 @@
 				
 				var JSONObject = $.parseJSON(JSONString);
 				
-				dhtmlx.message.expire = 10000;
-				dhtmlx.message(JSONObject.message);
+				//if booking updated
+				if(JSONObject.result == 1){
+					//set values of table cells
+					$('#'+current_booking_id).find('td').eq($('#col-bookId').index()).html($("form#editForm input#booking_id").val());
+					$('#'+current_booking_id).find('td').eq($('#col-lab').index()).html($("form#editForm #labname").val());
+					$('#'+current_booking_id).find('td').eq($('#col-date').index()).html($("form#editForm input#bookingdate").val());
+					$('#'+current_booking_id).find('td').eq($('#col-time').index()).html($("form#editForm #bookingtime").val());
+					$('#'+current_booking_id).find('td').eq($('#col-orgName').index()).html($("form#editForm input#org_name").val());
+					$('#'+current_booking_id).find('td').eq($('#col-eventName').index()).html($("form#editForm input#event_name").val());
+					$('#'+current_booking_id).find('td').eq($('#col-eventDesc').index()).html($("form#editForm input#event_description").val());
+					
+					// show success message
+					dhtmlx.message.expire = 10000; 
+					dhtmlx.message(JSONObject.message);
+				}else{
+					// show failure message
+					dhtmlx.message.expire = 10000;
+					dhtmlx.message(JSONObject.message);
+				}
+				
+				//close the form
+				function closeEditForm(e){
+					e.returnValue = e.preventDefault && e.preventDefault() ? false : false;
+			
+					var form = document.getElementById('editForm');
+			
+					var btn = document.getElementById("closeEditFormBtn");
+					
+					form.style.display = 'none';
+				}
+	
 			}
 		</script>
 
@@ -305,7 +338,7 @@
 				</table>
 				
 				<div id="tableformat" align="center">
-					<form id="editForm" action="" method="POST" ></form>
+					<form id="editForm"></form>
 				</div>
 			</div>
 			</center>
