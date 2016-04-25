@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+
 <html>
     <head>
         <title>Lab Time | Home</title>
