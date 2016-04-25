@@ -8,6 +8,22 @@
 
     <body id="background">
         <script>
+            
+            /*
+             * function to validate username
+             */
+            function validateUsername(username)
+            {
+                var rgText= /([a-z]{1,30}).([a-z]{1,30})/;
+                
+                if(!rgText.test(username))
+                {
+                    errorMsg.innerHTML="Invalid Username";
+                    return false;
+                }
+                return true;
+                
+            }
 
             /*
              callback function for login method
@@ -37,6 +53,12 @@
             {
                 var username = $("#username").val();
                 var password = $("#password").val();
+                if (!validateUsername(username))
+                {
+                    return;
+                }
+                
+               
                 var url = "login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
 
                 $.ajax(url,
