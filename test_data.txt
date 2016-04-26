@@ -1,0 +1,5 @@
+delete_booking: 
+http://localhost/ajax/bookingajax.php?cmd=3&booking_id=4&user_id=3
+
+edit_booking: 
+http://localhost/ajax/bookingajax.php?cmd=4&booking_id=1&user_id=1&org_name=TestOrganization&event_name=TestEvent&event_description=TestEventDescription&labname=Dlab&bookingdate=1970-10-10&bookingtime=8%3A00-9%3A00+am

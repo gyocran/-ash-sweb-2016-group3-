@@ -338,7 +338,7 @@
 				</table>
 				
 				<div id="tableformat" align="center">
-					<form id="editForm"></form>
+					<form id="editForm" method="POST"></form>
 				</div>
 			</div>
 			</center>
