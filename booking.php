@@ -104,6 +104,29 @@ class booking extends adb {
         return $dates;
 }
 
+    /* function to print JSON object from an array
+     * takes in the array and name user provides
+     * 
+     */
+    
+//    function getJsonObject($array,$name){
+//        $arrayLength = count($array); //get the length of the times array
+//        $count = 0; //this determines whether to place ',' in json object
+//        //creation of JSON array 
+//        echo "{
+//	\"$name\": [";
+//    foreach ($array as $value) {
+//        echo "{
+//		\"Time\": \"$value\"
+//                }";
+//            if($count<$timesLength-1){
+//                echo ",";
+//            }
+//            $count++;
+//    }
+//    echo "]}";
+//    }
+
     //unit test for viewBookingByWeek
 //include_once("booking.php");
 //$obj = new booking();
