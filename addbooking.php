@@ -1,14 +1,15 @@
 <?php
+	error_reporting(0);
 	/*
 	*The session starts when the page is open
 	*/
 	session_start();
 
 		if(!isset($_SESSION['USER']['user_id'])){ /**The sessions is checked for an id*/
-			header("Location: login.php");	 	 /**If there is no id, it returns to the login page*/
+			header("Location: home.php");	 	 /**If there is no id, it returns to the login page*/
 			exit();
 		}
-
+	
 	$firstname = $_SESSION['USER']['firstname'];  /**The first name of the user is saved an displayed in the html*/
 	echo "<span style = 'color:#A32222; #1472A5; padding: 20px; position: absolute; top: 11%;' ><b> Welcome $firstname </b> </span>";
 ?>
@@ -25,7 +26,6 @@
 		<script type="text/javascript" src='js/codebase/message.js'></script>
 
 		<script type="text/javascript">
-
 			/*
 			*addbooking
 			*This function makes requests for the ajax page to add a booking
@@ -44,7 +44,6 @@
 				var labname =  $("#labname").val();
 				var bookingdate =  $("#bookingdate").val();
 				var bookingtime =  $("#bookingtime").val();
-
 				/**The variables are added to the ajax page url*/
 				var ajaxurl = "bookingajax.php?"+'id='+ id + '&cmd='+ cmd +'&org_name='+ org_name + '&event_name=' + event_name + '&event_description=' + event_description +'&labname=' + labname  + '&bookingdate=' + bookingdate + '&bookingtime=' + bookingtime;
 				
@@ -52,7 +51,6 @@
 				if (org_name == '' || event_name == '' || event_description == '' ||labname == '' || bookingdate == ''  || bookingtime == '') {
 				alert("Please Fill All Fields");
 				}
-
 				else{
 					/**Makes a request to the ajax page with the following settings*/
 					$.ajax( ajaxurl, {
@@ -73,11 +71,8 @@
 					alert("Error while adding booking"); /**checks if request was carried out successfully and prints out an alert if it was not*/
 					return;
 				}
-
 				var obj = $.parseJSON(xhr.responseText); /**converts the JSON object */
-
 				alert(obj.message);     /**displays the JSON message*/
-
 	
 			}			
 		</script>
@@ -104,7 +99,7 @@
 					<td class="item" onclick= "location.href='viewmybookings.php'">My Bookings</td>
 					<td class="item">Master Schedule</td>
 					<td class="item">Manage Users</td>
-					<td class="item">+ Add a booking</td>
+					<td class="item" onclick="location.href='addbooking.php'">+ Add a booking</td>
 				</th>
 			</table>	
 		</div>
@@ -117,7 +112,7 @@
 				<center><div id="middlediv">
 					<table id="tableformat" align="center">
 					<!--This creates the form in which the user enter the details-->
-					<form action="" method="POST" >
+					<form action="" method="GET" >
 					<!--This displays the labels and text boxes in order-->
 						<tr>
 

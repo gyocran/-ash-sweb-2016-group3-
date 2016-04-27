@@ -9,30 +9,36 @@ include_once("adb.php");
  */
 class booking extends adb {
 
-   function bookings(){
-	}
-	/**
-	*Adds a new booking
-	*@param int user_id user id
-	*@param string org_name Organization name
-	*@param string event_name Event name
-	*@param string event_description event description
-	*@param string labname lab name
-	*@param date bookingdate booking date 
-	*@param string bookingtime booking time 
-	*/
-	function addBookings($user_id, $org_name,$event_name,$event_description,$labname,$bookingdate,$bookingtime){
-		$strQuery="insert into sweb_booking set
-						user_id='$user_id',
-						org_name='$org_name',
-						event_name='$event_name',
-						event_description = '$event_description',
-						labname='$labname',
-						bookingdate='$bookingdate',
-						bookingtime='$bookingtime'
-						";
-		return $this->query($strQuery);				
-	}
+    /**
+     * constructor
+     */
+    function __construct() {
+        
+    }
+
+    /**
+    *Adds a new booking
+    *@param int user_id user id
+    *@param string org_name Organization name
+    *@param string event_name Event name
+    *@param string event_description event description
+    *@param string labname lab name
+    *@param date bookingdate booking date 
+    *@param string bookingtime booking time 
+    */
+    function addBookings($user_id, $org_name,$event_name,$event_description,$labname,$bookingdate,$bookingtime){
+        $strQuery="insert into sweb_booking set
+                        user_id='$user_id',
+                        org_name='$org_name',
+                        event_name='$event_name',
+                        event_description = '$event_description',
+                        labname='$labname',
+                        bookingdate='$bookingdate',
+                        bookingtime='$bookingtime'
+                        ";
+        return $this->query($strQuery);             
+    }
+
 
     /**
      * gets booking records based on the filter
@@ -58,6 +64,4 @@ class booking extends adb {
     }
 
 }
-
-$obj = new booking();
 ?>
