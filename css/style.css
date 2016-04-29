@@ -380,7 +380,7 @@ input[type="submit"] {
   font-size:16px;
   font-weight:bold;
   color:#fff;
-  text-transform:uppercase;
+  
   text-align:center;
   padding-top:6px;
   margin: 29px 0 0 0px;
@@ -397,6 +397,26 @@ input[type="submit"] {
 input[type="submit"]:active {
   top:3px;
   box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #31524d, 0px 5px 3px #999;
+}
+
+input[type="button"]{
+  width:140px;
+  height:35px;
+  display:block;
+  font-size:16px;
+  font-weight:bold;
+  color:#fff;
+  text-align:center;
+  padding-top:6px;
+  margin: 29px 0 0 0px;
+  position:relative;
+  cursor:pointer;
+  background-color: #A32222;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius:5px;
+  box-shadow: inset 0px 1px 0px grey, 0px 2px 0px 0px grey, 0px 7px 5px #999;
 }
 
 /* The Modal (background) */

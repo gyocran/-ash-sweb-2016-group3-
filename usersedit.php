@@ -1,34 +1,70 @@
-<!DOCTYPE html>
+<?php
+	// checking if session has started
+	session_start();
+
+	// checking to see if session contains the user id
+	if(!isset($_SESSION['USER']['user_id'])){
+		header("Location: index.php");
+		exit();
+	}
+	
+	if ($_SESSION['USER']['usergroup'] != 1){
+		header("Location: viewmybookings.php");
+	}
+
+	// storing and printing the firstname
+	$firstname = $_SESSION['USER']['firstname'];
+	echo "<span style = 'color:#A32222; #1472A5; padding: 20px; position: absolute; top: 11%;' ><b> Welcome $firstname </b> </span>";
+		
+?>
 <html>
 	<head>
-		<title>Users List</title>
+		<title>Lab Time | Manage Users</title>
 		<link rel="stylesheet" href="css/style.css">
-		<script>
-			
-		</script>
+		<script type="text/javascript" src="js/jquery-1.12.1.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="js/codebase/themes/message_default.css">
+		<link rel="stylesheet" type="text/css" href="js/codebase/dhtmlx.css"/>
+		
+		<script type="text/javascript" src='js/codebase/message.js'></script>
+		<script type="text/javascript" src="js/codebase/dhtmlx.js"></script>
 	</head>
+	
 	<body>
-		<table>
-			<tr>
-				<td colspan="2" id="pageheader">
-					EDIT USER
-				</td>
-			</tr>
-			<tr>
-				<td id="mainnav">
-					<div class="menuitem">menu 1</div>
-					<div class="menuitem">menu 2</div>
-					<div class="menuitem">menu 3</div>
-					<div class="menuitem">menu 4</div>
-				</td>
-				<td id="content">
-					<div id="divPageMenu">
-						<span class="menuitem"><a href= "viewmasterschedule.php">View MasterSchedule</a></span>
-						<span class="menuitem" ><a href= "index.php?id=2">My Bookings</a></span>
-						<span class="menuitem" ><a href= "userslist.php">Manage Users</a></span>
-						<input type="text" id="txtSearch" />
-						<span class="menuitem">search</span>		
-					</div>
+		<header id="pageheader">
+
+			<div style="width:10%; height:100%;float: left;"></div>
+
+			<div style="width:80%; float: left;">
+				<center><img src="css/images/logo.gif" style="width:180px;height:105%;"> </center>
+			</div>
+
+			<div style="width:10%; float: left;">	
+			<span class= "logout" onClick="location.href='logout.php'"> Logout</span>
+			</div>
+
+		</header>	
+
+		<div id ="navbar">
+			<table align="center">
+			<!--This creates the menu bar-->
+				<tr>
+					<td class="item" onclick="location.href='viewmybookings.php'">My Bookings</td>
+					<td class="item" onclick="location.href = 'displayBookings.php'">Master Schedule</td>
+					<td class="item" onclick="location.href='manage_users.php'">Manage Users</td>
+					<td class="item" onclick="location.href = 'addbooking.php'">+ Add a booking</td>
+				</tr>
+			</table>	
+		</div>
+
+		<!-- Where main content will be -->
+		<div id="content">
+			<div id="leftdiv">
+			</div>
+
+			<center>
+			<div id="middlediv">
+				<table>
 					<?php
 						$strStatusMessage ="Update user";
 						$old_username = '';
@@ -65,7 +101,7 @@
 									$strStatusMessage="error while updating user";
 								}else{
 									$strStatusMessage="$username updated";
-									 echo "<script> location.replace('userslist.php'); </script>";
+									 echo "<script> location.replace('manage_users.php'); </script>";
 								}
 									
 								
@@ -80,11 +116,7 @@
 							$old_permission = $row['permission'];
 						}
 					?>
-					<div id="divStatus" class="status">
-						<?php echo  $strStatusMessage ?>
-					</div>
-					<div id="divContent">
-						Content space
+					
 					<form action = "" method = "POST">
 						Username:	<input type = "text" name = "username" value = "<?php echo $old_username; ?>"/> <br>
 						 <br>
@@ -155,8 +187,12 @@
 				
 						<input type = "submit" name="submit" value = "Update" />
 					</form>
-				</td>		
-			</tr>			
-		</table>		
-	</body>
+			</center>
+
+			<div id="rightdiv">
+			</div>
+		</div>
+	</body> 
+	
+	<footer id="footer"></footer>
 </html>

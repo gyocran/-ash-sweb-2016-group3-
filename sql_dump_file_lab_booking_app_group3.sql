@@ -68,12 +68,14 @@ INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,
 INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (3,'eric.korku',MD5('231'),'eric','gbekor',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
 INSERT INTO `sweb_user` (`user_id`,`username`,`password`,`firstname`,`lastname`,`usergroup`,`status`,`permission`) VALUES (4,'maame.poku',MD5('213'),'maame','afriyie poku',1,'ENABLED','VIEW,ADD,DELETE,UPDATE');
 
-INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Dlab','arts',1);
-INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('englab','engineering',2);
-INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('lab221','computer science',3);
-INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('lab222','computer science',4);
+INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Design Lab','arts',1);
+INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Electrical Engineering Lab','engineering',1);
+INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Computer Engineering Lab','engineering',2);
+INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Mechanical Engineering Lab','engineering',2);
+INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Computer Lab 221','computer science',3);
+INSERT INTO `sweb_lab` (`labname`,`department`,`supervisor_id`) VALUES ('Computer Lab 222','computer science',4);
 
-INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (1,1,'speak club','public speaking','we will be teaching you the techniques to overcome your fears for public speaking','Dlab','2016-03-14','8:00-9:00 am');
-INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (2,1,'pencils of promise','mentoring kids','we will discuss how we can build the capacities of pupils in ayim primary','englab','2016-03-22','8:00-9:00 am');
-INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (3,1,'readHub','teaching reading skills','come lets discuss how we can cultivate reading habit among kids','lab222','2016-04-02','9:00-10:00 am');
-INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (4,1,'peer educators','first meeting','we will be discussing how we can make the club vibrant this semester','lab221','2016-04-03','12:00-1:00 pm');
+INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (1,1,'speak club','public speaking','we will be teaching you the techniques to overcome your fears for public speaking','Design Lab','2016-03-14','8:00-9:00 am');
+INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (2,1,'pencils of promise','mentoring kids','we will discuss how we can build the capacities of pupils in ayim primary','Computer Engineering Lab','2016-03-22','8:00-9:00 am');
+INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (3,1,'readHub','teaching reading skills','come lets discuss how we can cultivate reading habit among kids','Computer Lab 222','2016-04-02','9:00-10:00 am');
+INSERT INTO `sweb_booking` (`booking_id`,`user_id`,`org_name`,`event_name`,`event_description`,`labname`,`bookingdate`,`bookingtime`) VALUES (4,1,'peer educators','first meeting','we will be discussing how we can make the club vibrant this semester','Computer Lab 221','2016-04-03','12:00-1:00 pm');

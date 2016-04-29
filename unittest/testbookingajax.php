@@ -4,7 +4,6 @@ include_once("..\bookingajax.php");
 
 
 class testbookingajax extends PHPUnit_Framework_TestCase{
-	
 	/**
 	*unit test for delete booking implementation using Ajax
 	*/

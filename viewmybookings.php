@@ -10,12 +10,11 @@
 
 	// storing and printing the firstname
 	$firstname = $_SESSION['USER']['firstname'];
-	echo "<span style = 'color:#A32222; #1472A5; padding: 20px; position: absolute; top: 11%;' ><b> Welcome $firstname </b> </span>";
-		
+	echo "<span style = 'color:#A32222; #1472A5; padding: 20px; position: absolute; top: 11%;' ><b> Welcome $firstname </b> </span>";		
 ?>
 <html>
 	<head>
-		<title>My Bookings</title>
+		<title>Lab Time | My Bookings</title>
 		<link rel="stylesheet" href="css/style.css">
 		<script type="text/javascript" src="js/jquery-1.12.1.js"></script>
 		
@@ -49,9 +48,9 @@
 			<!--This creates the menu bar-->
 				<tr>
 					<td class="item" onclick="location.href='viewmybookings.php'">My Bookings</td>
-					<td class="item" onclick="#'">Master Schedule</td>
+					<td class="item" onclick="">Master Schedule</td>
 					<td class="item" onclick="location.href='manage_users.php'">Manage Users</td>
-					<td class="item" onclick="#">+ Add a booking</td>
+					<td class="item" onclick="">+ Add a booking</td>
 				</tr>
 			</table>	
 		</div>
@@ -294,9 +293,9 @@
 				if(JSONObject.result == 1){
 					//set values of table cells
 					$('#'+current_booking_id).find('td').eq($('#col-bookId').index()).html($("form#editForm input#booking_id").val());
-					$('#'+current_booking_id).find('td').eq($('#col-lab').index()).html($("form#editForm #labname").val());
+					$('#'+current_booking_id).find('td').eq($('#col-lab').index()).html( $('#labname').find(":selected").text());
 					$('#'+current_booking_id).find('td').eq($('#col-date').index()).html($("form#editForm input#bookingdate").val());
-					$('#'+current_booking_id).find('td').eq($('#col-time').index()).html($("form#editForm #bookingtime").val());
+					$('#'+current_booking_id).find('td').eq($('#col-time').index()).html( $('#bookingtime').find(":selected").text());
 					$('#'+current_booking_id).find('td').eq($('#col-orgName').index()).html($("form#editForm input#org_name").val());
 					$('#'+current_booking_id).find('td').eq($('#col-eventName').index()).html($("form#editForm input#event_name").val());
 					$('#'+current_booking_id).find('td').eq($('#col-eventDesc').index()).html($("form#editForm input#event_description").val());
@@ -347,4 +346,6 @@
 			</div>
 		</div>
 	</body> 
+	
+	<footer id="footer"></footer>
 </html>

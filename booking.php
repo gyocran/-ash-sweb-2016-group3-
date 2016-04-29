@@ -15,7 +15,7 @@ class booking extends adb{
 	function __construct(){
 	}
 	
-		/**
+	/**
 	*Adds a new booking
 	*@param int user_id user id
 	*@param string org_name Organization name
@@ -36,22 +36,6 @@ class booking extends adb{
 						bookingtime='$bookingtime'
 						";
 		return $this->query($strQuery);				
-	}
-
-	
-	/**
-	* gets booking records based on the filter
-	* @param string mixed condition to filter. If  false, then filter will not be applied
-	* @return boolean true if successful, else false
-	*/
-	function getBooking($filter=false){
-		$strQuery="SELECT * FROM sweb_booking";
-		
-		if($filter){
-			$strQuery=$strQuery . " where $filter";
-		}
-		
-		return $this->query($strQuery);
 	}
 	
 	/**
@@ -137,12 +121,26 @@ class booking extends adb{
 	}
 	
 	/**
-	* gets the bookings made by a particular userID
-	*@param int userID user code
+	* gets booking records based on the filter
+	* @param string mixed condition to filter. If  false, then filter will not be applied
+	* @return boolean true if successful, else false
 	*/
-	function viewMyBooking($userID){
-		$this->getBooking(" user_id = $userID");
-		return $this->fetch();
+	function getBooking($filter = false) {
+		$strQuery = "SELECT booking_id, labname, bookingdate, bookingtime, org_name, event_name, event_description FROM sweb_booking";
+
+		if ($filter) {
+		    $strQuery = $strQuery . " where $filter";
+		}
+		return $this->query($strQuery);
+	}
+	
+	/**
+	* gets the bookings made by a particular userID
+	* @param int userID user code
+	*/
+	function viewMyBooking($userID) {
+		$filter = "user_id = $userID order by booking_id DESC limit 30";
+		return $this->getBooking($filter);
 	}
 
 }
