@@ -3,33 +3,101 @@
     <head>
         <style>
             body {
-    font-family: 'Open Sans', sans-serif;
+/*    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
-    line-height: 1.42em;
+    line-height: 1.42em;*/
     color: #A7A1AE;
     /*background-color: #1F2739;*/
             }
-            table {
-      text-align: left;
+.container {
+    /*text-align: left;*/
     overflow: hidden;
     width: 80%;
     margin: 0 auto;
     display: table;
-    padding: 0 0 8em 0;
+    /*padding: 0em 2em 2em 2em;*/
+    background: #A32222;
 }
 td  {
+    color: #A32222;
     padding-bottom: 2%;
     padding-top: 2%;
     padding-left: 2%;
-    /*padding-right: 2%;*/
+    padding-right: 2%;
 }
-h1{
-    font-size: 3em;
-    font-weight: 300;
-    line-height: 1em;
+
+.container th h1{
     text-align: center;
-    color: #4DC3FA
+    font-weight: 900;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    color: #fb667a
 }
+
+ .container th{
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+}
+.container td{
+    padding-left: 2%;
+    padding-right: 2%;
+    font-weight: bold;
+    color: yellow;
+}
+
+.container td:first-child {
+    color: #fb667a;
+    text-align: center;
+    font-weight: 900;
+}
+
+.container tr:nth-child(odd) {
+    background-color: #594875;
+}
+
+.container tr:nth-child(even) {
+    background-color: #575475;
+}
+
+.container td:hover {
+  background-color: #FFF842;
+  color: #403E10;
+  font-weight: bold;
+  
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+	  transition-duration: 0.4s;
+	  transition-property: all;
+  transition-timing-function: line;
+}
+/*div{
+    background-color: orange;
+}*/
+
+h1{
+    font-size: 1em;
+    font-weight: 100;
+    line-height: 1em;
+    text-align: left;
+    /*color: #8C001A;*/
+}
+
+.viewTable{
+    background: #f5f5f5;
+    border-collapse: separate;
+    box-shadow: inset 0 1px 0 #fff;
+    font-size: 12px;
+    line-height: 24px;
+    margin: 30px auto;
+    text-align: left;
+    width: 800px;
+} 
         </style>
         <title>Bookings</title>
         <script type="text/javascript" src="js/jquery-1.12.1.js"></script>
@@ -47,25 +115,25 @@ h1{
 
 // if result==2, display by week
                 if (result === 2) {
-//                    $("p").append("<table>");
-                    item += "<table>";
-                    item += "<tr><td colspan=2></td>";
+                    item += "<table class=\"container\">";
+                    item += "<tr><th colspan=2></th>";
                     item += "<th colspan=10>Time</th>";
                     item += "</tr>";
                     item += "<tr>";
                     item += "<th>Date</th>";
                     item += "<th>Labs</th>";
                     for (j = 0; j < obj.AllBookings.times.length; j++) {
-                        item += "<td>" + obj.AllBookings.times[j].Time + "</td>";
+                        item += "<th><h1>" + obj.AllBookings.times[j].Time + "</h1></th>";
                     }
                     item += "</tr>";
                     for (i = 0; i < obj.AllBookings.bookings.length; i++) {
                         var mod = i % 4;
+                        
                         if (mod === 0) {
-                            item += "<tr><td rowspan = 4>" + obj.AllBookings.bookings[i].Date + "</td>";
+                            item += "<tr><th rowspan = 4>" + obj.AllBookings.bookings[i].Date + "</th>";
                         }
 
-                        item += "<td>" + obj.AllBookings.bookings[i].LabName + "</td>";
+                        item += "<th><h1>" + obj.AllBookings.bookings[i].LabName + "</th></h1>";
                         item += "<td>" + obj.AllBookings.bookings[i].status0 + "</td>";
                         item += "<td>" + obj.AllBookings.bookings[i].status1 + "</td>";
                         item += "<td>" + obj.AllBookings.bookings[i].status2 + "</td>";
@@ -77,8 +145,6 @@ h1{
                         item += "<td>" + obj.AllBookings.bookings[i].status8 + "</td>";
                         item += "<td>" + obj.AllBookings.bookings[i].status9 + "</td>";
                         item += "</tr>";
-                        console.log(k);
-                        console.log(i);
                     }
                     document.getElementById("displayTable").innerHTML = item;
                 }
@@ -86,21 +152,22 @@ h1{
 
 
                 else {
-                    item += "<table class>";
+                    item += "<table class=\"container\">";
                     item += "<tr>";
-                    item += "<td></td>";
+                    item += "<th><h1></h1></th>";
                     item += "<th colspan=10>Time</th>";
                     item += "</tr>";
                     item += "<tr>";
                     item += "<th>Labs</th>";
-                    console.log(obj.AllBookings.bookings.length);
+                    
+                    
                     for (i = 0; i < obj.AllBookings.times.length; i++) {
-                        item += "<td>" + obj.AllBookings.times[i].Time + "</td>";
+                        item += "<th><h1>" + obj.AllBookings.times[i].Time + "</h1></th>";
                     }
 
                     for (i = 0; i < obj.AllBookings.bookings.length; i++) {
                         item += "</tr>";
-                        item += "<td>" + obj.AllBookings.bookings[i].LabName + "</td>";
+                       item += "<th><h1>" + obj.AllBookings.bookings[i].LabName + "</h1></th>";
                         item += "<td>" + obj.AllBookings.bookings[i].status0 + "</td>";
                         item += "<td>" + obj.AllBookings.bookings[i].status1 + "</td>";
                         item += "<td>" + obj.AllBookings.bookings[i].status2 + "</td>";
@@ -113,9 +180,10 @@ h1{
                         item += "<td>" + obj.AllBookings.bookings[i].status9 + "</td>";
                         item += "</tr>";
                     }
-                    document.getElementById("displayTable").innerHTML = item;
+                    
                 }
                 item += "</table>";
+                document.getElementById("displayTable").innerHTML = item;
             }
 
             function displayBookings(obj) {
@@ -126,8 +194,8 @@ h1{
                 );
             }
         </script>
-        <!--<link rel="stylesheet" href="css/style.css">-->
-            
+        <link rel="stylesheet" href="css/style.css">
+          
         <h1>Please Select Your Option From The Drop Down Below</h1>
         
         <form id="form">
@@ -137,8 +205,9 @@ h1{
                 <option value='2'>This week</option>
             </select>
         </form>
-        
+       
         <div id="displayTable"></div>
+        
     </body>
 </html>
 
