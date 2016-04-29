@@ -15,53 +15,56 @@ switch ($cmd) {
         displayByWeek(); //if cmd=2 display by week
         break;
     default:
-        echo '{"result":0,"message":"wrong cmd provided"}'; //change to json message
+        echo '{"result":0,"message":"wrong cmd provided"}';
         break;
 }
 
 function displayByDay() {
 
-//include booking class
+//include classes
     include_once("booking.php");
     include_once("labs.php");
 
-// create object from booking class
+// create objects from classes class
     $obj = new booking();
     $obj2 = new labs();
 
-// today's date
-    $date = date("Y-m-d",  strtotime("today"));
-//    echo "All bookings for $date";
+// fetch today's date
+    $date = date("Y-m-d", strtotime("today"));
 
-    //creation of JSON object
+    // name of JSON object containing arrays of various elements
     echo "{\"AllBookings\":";
-    
-    // used to tell javascript to print by day or by week
+
+    /*
+     * 'result' variable used to tell javascript page to print by day or by week
+     * if 'result'==1, print bookings for today
+     */
     echo "{\"outcome\":[{\"result\": 1}],";
-    
+
 //array of all the possible booking times
     $times = array("8:00-9:00 am", "9:00-10:00 am", "10:00-11:00 am",
         "11:00-12:00 pm", "12:00-1:00 pm", "1:00-2:00 pm", "2:00-3:00 pm",
         "3:00-4:00 pm", "4:00-5:00 pm", "5:00-6:00 pm");
-    
-//        creation of JSON array of times
-$timesLength = count($times); //get the length of the times array
-    $count = 0; //this determines whether to place ',' in json object
 
+// loop to create of JSON array of times
+    $timesLength = count($times); //get the length of the times array
+// this determines whether to place ',' in json object
+    $count = 0;
     echo "
 	\"times\": [";
     foreach ($times as $value) {
         echo "{
 		\"Time\": \"$value\"
                 }";
-            if($count<$timesLength-1){
-                echo ",";
-            }
-            $count++;
+        //if (count!=length of array) print ","
+        if ($count < $timesLength - 1) { //
+            echo ",";
+        }
+        $count++;
     }
     echo "],";
-    
-//array of all the lab names
+
+//array of all the lab names retrieved from database
     $labs = array();
     if (!$obj2->getLabNames()) {
         echo "Retrieval of lab names failed";
@@ -72,25 +75,27 @@ $timesLength = count($times); //get the length of the times array
             $temp = $obj2->fetch();
         }
     }
-    
-    
-//    print_r($labs);
+
+    /*
+     * loop to create of JSON array of times
+     * logic is same as creation of times JSON array
+     */
     $labsLength = count($labs); //get the length of the labs array
-    $count = 0; //this determines whether to place ',' in json object
-    //creation of JSON array of times
+    $count = 0;
+
     echo "\"labs\": [";
     foreach ($labs as $value) {
         echo "{
 		\"LabName\": \"{$value['labname']}\"
                 }";
-            if($count<$labsLength-1){
-                echo ",";
-            }
-            $count++;
+        if ($count < $labsLength - 1) {
+            echo ",";
+        }
+        $count++;
     }
     echo "],";
- 
-//array of all the bookings for today
+
+//array of all the bookings for today retrieved from database
     $allbookings = array();
     if (!$obj->viewBookingByDate($date)) {
         echo "Retrieval of bookings failed";
@@ -101,87 +106,51 @@ $timesLength = count($times); //get the length of the times array
             $row = $obj->fetch();
         }
     }
-    
-//    print_r($allbookings);
-//    $bookingsLength = count($allbookings); //get the length of the allbookings array
-//    $count = 0; //this determines whether to place ',' in json object
-//    //creation of JSON array of times
-//    echo "\"bookings\": [";
-//    foreach ($allbookings as $value) {
-//        echo "{
-//		\"labName\": \"{$value['labname']}\"
-//                ,";
-//        echo "\"bookingTime\": \"{$value['bookingtime']}\"
-//                }";
-//            if($count<$bookingsLength-1){
-//                echo ",";
-//            }
-//            $count++;
-//    }
-//    echo "]}";
-//    
-    
-//table head
-//    echo "<table cellspacing= 1 border=1 cellpadding=3>
-//			<tr>
-//                        <th></th>
-//			<th colspan=10>Time</th>
-//			</tr>";
-//    echo "<tr>
-//			<th>LABS</th>";
-//    foreach ($times as $value) {
-//        echo "<td>$value</td>";
-//    }
-//    echo "</tr>";
-//    echo "[";
-//    
-//    
-//display contents of bookings in the t/able
-    
+
+    /*
+     * Next batch of code creates JSON array of all the bookings
+     * Uses the labs, times and allbookings arrays created earlier
+     * Logic is to check all bookings array if it contains an array of current labname and current time
+     * current labname and current time obtained using two loops 
+     */
     $bookingsLength = count($times); //get the length of the allbookings array
     $labsLength = count($labs);
-    //creation of JSON array of bookings
-    echo "\"bookings\": [";
-    $outerCount = 0;
+
+    echo "\"bookings\": ["; // name of object
+    $outerCount = 0; // count used to determine whether to print ',' between each element of array
     foreach ($labs as $valOne) {
-        $innerCount = 0; //this determines whether to place ',' in json object
-       
-//        echo "{
-//        echo "<tr><td>{$valOne['labname']}</td>";
+        $innerCount = 0; //this determines whether to place ',' between elements in each object in array
         echo "{\"LabName\":\"{$valOne['labname']}\",";
         foreach ($times as $valTwo) {
-//            echo "{";
+            // if allbookings array contains an array that contains current labname and current time, print 'booked'
             if (in_array(array('labname' => $valOne['labname'],
                         'bookingtime' => $valTwo), $allbookings)) {
                 echo "
-		\"status{$innerCount}\": \"booked\"
-                ";
+		\"status{$innerCount}\": \"booked\" 
+                "; // print out innercount as well to differentiate elements within the array
             } else {
-               echo "
+                echo "
 		\"status{$innerCount}\": \"\"
                 ";
             }
-//            echo "}";
-            if($innerCount<$bookingsLength-1){
+            if ($innerCount < $bookingsLength - 1) {
                 echo ",";
             }
             $innerCount++;
         }
         echo "}";
-        if($outerCount<$labsLength-1){
-                echo ",";
-            }
-            $outerCount++;
-//        echo "]";
+        if ($outerCount < $labsLength - 1) {
+            echo ",";
+        }
+        $outerCount++;
     }
     echo "]}";
     echo "}";
 }
 
 function displayByWeek() {
-//echo "{\"result\":0,\"message\":\"user code is not correct\"}";
 
-//include booking class
+// include booking class
     include_once("labs.php");
     include_once("booking.php");
 
@@ -189,43 +158,49 @@ function displayByWeek() {
     $obj = new booking();
     $obj2 = new labs();
 
-//array of dates for the week
+// array of dates for the week from database
     $dates = $obj->getDates();
-    
-    //creation of JSON object
+
+    //name of JSON object
     echo "{\"AllBookings\":";
-    
-     //        creation of JSON array of dates
+
+    /*
+     * 'result' variable used to tell javascript page to print by day or by week
+     * if 'result'==1, print bookings for today
+     */
+    echo "{\"outcome\": [{\"result\": 2}],";
+
+    // creation of JSON array of dates
     $datesLength = count($dates); //get the length of the times array
     $count = 0; //this determines whether to place ',' in json object
 
-    echo "{\"outcome\": [{\"result\": 2}],";
     echo "
 	\"dates\": [";
     foreach ($dates as $value) {
         echo "{
 		\"Date\": \"$value\"
                 }";
-            if($count<$datesLength-1){
-                echo ",";
-            }
-            $count++;
+        if ($count < $datesLength - 1) {
+            echo ",";
+        }
+        $count++;
     }
     echo "],";
+
     /*
      * get first and last days of the week in year-month-day format
-     * One week is from one Monday to the next
+     * a week is from one Monday to the next
      */
     $startDate = date("Y-m-d", strtotime($dates[0]));
     $endDate = date("Y-m-d", strtotime($dates[7]));
-//
-//array of booking times
+
+//array of all the possible booking times
     $times = array("8:00-9:00 am", "9:00-10:00 am", "10:00-11:00 am",
         "11:00-12:00 pm", "12:00-1:00 pm", "1:00-2:00 pm", "2:00-3:00 pm",
         "3:00-4:00 pm", "4:00-5:00 pm", "5:00-6:00 pm");
 
-    //        creation of JSON array of times
-$timesLength = count($times); //get the length of the times array
+    // loop to create of JSON array of times
+    $timesLength = count($times); //get the length of the times array
     $count = 0; //this determines whether to place ',' in json object
 
     echo "
@@ -234,14 +209,14 @@ $timesLength = count($times); //get the length of the times array
         echo "{
 		\"Time\": \"$value\"
                 }";
-            if($count<$timesLength-1){
-                echo ",";
-            }
-            $count++;
+        if ($count < $timesLength - 1) {
+            echo ",";
+        }
+        $count++;
     }
     echo "],";
-    
-//get array of all lab names
+
+//get array of all lab names from database
     $labs = array();
     if (!$obj2->getLabNames()) {
         echo "Retrieval of lab names failed";
@@ -252,23 +227,24 @@ $timesLength = count($times); //get the length of the times array
             $temp = $obj2->fetch();
         }
     }
-    
-    $labsLength = count($labs); //get the length of the labs array
-    $count = 0; //this determines whether to place ',' in json object
+
+    //loop to create of JSON array of times
+    $labsLength = count($labs);
+    $count = 0;
     //creation of JSON array of times
     echo "\"labs\": [";
     foreach ($labs as $value) {
         echo "{
 		\"LabName\": \"{$value['labname']}\"
                 }";
-            if($count<$labsLength-1){
-                echo ",";
-            }
-            $count++;
+        if ($count < $labsLength - 1) {
+            echo ",";
+        }
+        $count++;
     }
     echo "],";
 
-//get all bookings for the week using start and end dates
+//get all bookings for the week using start and end dates retrieved from database
     $weekBookings = array();
     if (!$obj->viewBookingByWeek($startDate, $endDate)) {
         echo "Retrieval of this week's bookings failed";
@@ -279,54 +255,27 @@ $timesLength = count($times); //get the length of the times array
             $temp = $obj->fetch();
         }
     }
-//
-////Table heading
-////echo "<table cellspacing=1 border=1 cellpadding=3>   
-////           <tr>
-////           <th colspan=2></th>
-////           <th colspan=10>Time</th>            
-////            </tr>";
-////echo "<tr>
-//////            <th>Date</th>
-//////            <th>LAB</th>";
-////foreach ($times as $value) {
-////    echo "<td>$value</td>";
-////}
-////echo "</tr>";
-////echo "</table>";
-////print_r($weekBookings);
-////$t = date("Y-m-d", strtotime($dates[0]));
-////echo "j $t";
-//
+
+    /*
+     * Next batch of code creates JSON array of all the bookings
+     * Uses the labs, times and allbookings arrays created earlier
+     * Logic is same as retrieving bookings by day
+     * except that the date is added to the current items that need to be checked 
+     * in the weekbookings array
+     */
     $weekBookingsLength = count($times);
     $datesLength = count($dates) * count($labs);
-//echo $weekBookingsLength . " ";
-//    echo $datesLength;
     $outerCount = 0;
+
+    //name of object
     echo "\"bookings\": [";
     //creation of JSON array of bookings
     foreach ($dates as $valOne) {
-//        echo "<table cellspacing=1 border=1 cellpadding=3>   
-//           <tr>
-//           <th colspan=2></th>
-//           <th colspan=10>Time</th>            
-//            </tr>";
-//        echo "<tr>
-//            <th>Date</th>
-//            <th>LAB</th>";
-        //print out time values from array
-//        foreach ($times as $value) {
-//            echo "<td>$value</td>";
-//        }
-//        echo "</tr>";
-        
         foreach ($labs as $valTwo) {
-            
+
             $innerCount = 0; //this determines whether to place ',' in json object
-             echo "{\"Date\":\"$valOne\",";
-//            echo "<tr><td rowspan=0>$valOne</td>"; //print out the date
-              echo "\"LabName\":\"{$valTwo['labname']}\",";
-//            echo "<td>{$valTwo['labname']}</td>"; //print out the lab name
+            echo "{\"Date\":\"$valOne\",";
+            echo "\"LabName\":\"{$valTwo['labname']}\",";
             foreach ($times as $valThree) {
                 if (in_array(array('bookingdate' =>
                             date("Y-m-d", strtotime($valOne)),
@@ -335,27 +284,23 @@ $timesLength = count($times); //get the length of the times array
                     echo "
 		\"status{$innerCount}\": \"booked\"
                 ";
-            } else {
-               echo "
+                } else {
+                    echo "
 		\"status{$innerCount}\": \"\"
                 ";
+                }
+                if ($innerCount < $weekBookingsLength - 1) {
+                    echo ",";
+                }
+                $innerCount++;
             }
-//            echo "}";
-            if($innerCount<$weekBookingsLength-1){
-                echo ",";
-            }
-            $innerCount++;
-        }
-        echo "}";
-        if($outerCount<$datesLength-1){
+            echo "}";
+            if ($outerCount < $datesLength - 1) {
                 echo ",";
             }
             $outerCount++;
-//            echo $outerCount;
-//        echo "]";
-    }
-//    echo "},";
+        }
     }
     echo "]}";
-        echo "}";
+    echo "}";
 }
