@@ -4,6 +4,13 @@ include_once("..\bookingajax.php");
 
 
 class testbookingajax extends PHPUnit_Framework_TestCase{
+
+	public function testUrl(){
+		$url = "bookingajax.php?cmd=2&id=3";
+        
+		$this->assertTrue(true,'{"result":1,"message":"successful"}',$url);
+	}
+	
 	/**
 	*unit test for delete booking implementation using Ajax
 	*/

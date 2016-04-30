@@ -16,14 +16,16 @@
 
 <html>
 	<head>
-		<title>Add New Booking</title>
+		<title>Lab Time | Add New Booking</title>
 
-		<link rel="stylesheet" href="style.css"> 
-
+		<link rel="stylesheet" href="css/style.css">
+		<script type="text/javascript" src="js/jquery-1.12.1.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="js/codebase/themes/message_default.css">
 		<link rel="stylesheet" type="text/css" href="js/codebase/dhtmlx.css"/>
-		<script type="text/javascript" src="js/jquery-1.12.1.js"></script>
+		
 		<script type="text/javascript" src='js/codebase/message.js'></script>
+		<script type="text/javascript" src="js/codebase/dhtmlx.js"></script>
 
 		<script type="text/javascript">
 			/*
@@ -83,7 +85,7 @@
 		<header  id="pageheader"> 
 			<div style="width:10%; height:100%;float: left;"></div>
 			<div style="width:80%; float: left;">
-				<center><img src="images/logo.gif" style="width:180px;height:105%";></center>
+				<center><img src="css/images/logo.gif" style="width:180px;height:105%";></center>
 			</div>
 			<div style="width:10%; float: left;">
 					<span class= "logout" onClick="location.href='logout.php'"> Logout</span>
@@ -96,10 +98,10 @@
 			<table align="center">
 			<!--This creates the menu bar-->
 				<th>
-					<td class="item" onclick= "location.href='viewmybookings.php'">My Bookings</td>
-					<td class="item">Master Schedule</td>
-					<td class="item">Manage Users</td>
-					<td class="item" onclick="location.href='addbooking.php'">+ Add a booking</td>
+					<td class="item" onclick="location.href='viewmybookings.php'">My Bookings</td>
+					<td class="item" onclick="#'">Master Schedule</td>
+					<td class="item" onclick="location.href='manage_users.php'">Manage Users</td>
+					<td class="item" onclick="location.href = 'addbooking.php'">+ Add a booking</td>
 				</th>
 			</table>	
 		</div>

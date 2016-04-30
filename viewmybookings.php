@@ -1,16 +1,16 @@
 <?php
-// checking if session has started
-session_start();
+	// checking if session has started
+	session_start();
 
-// checking to see if session contains the user id
-if (!isset($_SESSION['USER']['user_id'])) {
-    header("Location: home.php");
-    exit();
-}
+	// checking to see if session contains the user id
+	if(!isset($_SESSION['USER']['user_id'])){
+		header("Location: index.php");
+		exit();
+	}
 
-// storing and printing the firstname
-$firstname = $_SESSION['USER']['firstname'];
-echo "<span style = 'color:#A32222; #1472A5; padding: 20px; position: absolute; top: 11%;' ><b> Welcome $firstname </b> </span>";
+	// storing and printing the firstname
+	$firstname = $_SESSION['USER']['firstname'];
+	echo "<span style = 'color:#A32222; #1472A5; padding: 20px; position: absolute; top: 11%;' ><b> Welcome $firstname </b> </span>";		
 ?>
 <html>
 	<head>
@@ -48,9 +48,9 @@ echo "<span style = 'color:#A32222; #1472A5; padding: 20px; position: absolute; 
 			<!--This creates the menu bar-->
 				<tr>
 					<td class="item" onclick="location.href='viewmybookings.php'">My Bookings</td>
-					<td class="item" onclick="">Master Schedule</td>
+					<td class="item" onclick="location.href = 'displayBookings.php'">Master Schedule</td>
 					<td class="item" onclick="location.href='manage_users.php'">Manage Users</td>
-					<td class="item" onclick="">+ Add a booking</td>
+					<td class="item" onclick="location.href = 'addbooking.php'">+ Add a booking</td>
 				</tr>
 			</table>	
 		</div>

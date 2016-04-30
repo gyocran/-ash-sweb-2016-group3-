@@ -50,9 +50,9 @@
 			<!--This creates the menu bar-->
 				<tr>
 					<td class="item" onclick="location.href='viewmybookings.php'">My Bookings</td>
-					<td class="item" onclick="">Master Schedule</td>
+					<td class="item" onclick="location.href = 'displayBookings.php'">Master Schedule</td>
 					<td class="item" onclick="location.href='manage_users.php'">Manage Users</td>
-					<td class="item" onclick="">+ Add a booking</td>
+					<td class="item" onclick="location.href = 'addbooking.php'">+ Add a booking</td>
 				</tr>
 			</table>	
 		</div>
