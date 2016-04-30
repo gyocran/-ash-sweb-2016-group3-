@@ -17,11 +17,11 @@
 			echo $conn->error;
 			exit();
 		}else{
-			header('location:userslist.php');
+			header('location:manage_users.php');
 		}
 	}
 	
 	
 	//redirect to list
-	header('location:userslist.php');	
+	header('location:manage_users.php');	
 ?>

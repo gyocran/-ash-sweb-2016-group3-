@@ -41,13 +41,12 @@ function login() {
             echo '{"result":0,"message":"username or password is wrong"}';
             return;
         } else {
-            echo '{"result":1,';
-            
-            // starting the session
+	// starting the session
             session_start();
-            
-            //storing user details in session
+	    //storing user details in session
             $_SESSION['USER'] = $row;
+	    
+            echo '{"result":1,';
             echo '"message": "user authenticated"';
             echo '}';
         }
