@@ -7,7 +7,7 @@ include_once("adb.php");
 *Labs  class
 */
 class labs extends adb{
-	function __construct(){
+	function labs(){
 	
 	}
 
@@ -15,9 +15,9 @@ class labs extends adb{
 	*Gets all labs 
 	*/
 	function getAllLabs(){
-		$strQuery="select labname, department,supervisor_id from sweb_lab";
+		$strQuery="select labname,department,supervisor_id from sweb_lab";
+		echo $strQuery;
 		return $this->query($strQuery);
-	
 	}
 }
 
