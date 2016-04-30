@@ -110,8 +110,8 @@ function displayByDay() {
     /*
      * Next batch of code creates JSON array of all the bookings
      * Uses the labs, times and allbookings arrays created earlier
-     * Logic is to check all bookings array if it contains an array of current labname and current time
-     * current labname and current time obtained using two loops 
+     * Logic is to check all bookings array if it contains an array of the current labname and current time
+     * current labname and current time are determined using two loops 
      */
     $bookingsLength = count($times); //get the length of the allbookings array
     $labsLength = count($labs);
@@ -259,21 +259,19 @@ function displayByWeek() {
     /*
      * Next batch of code creates JSON array of all the bookings
      * Uses the labs, times and allbookings arrays created earlier
-     * Logic is same as retrieving bookings by day
-     * except that the date is added to the current items that need to be checked 
+     * Logic is same as retrieving bookings by day except that the date is added to the current items that need to be checked 
      * in the weekbookings array
      */
     $weekBookingsLength = count($times);
     $datesLength = count($dates) * count($labs);
-    $outerCount = 0;
+    $outerCount = 0; // count used to determine whether to print ',' between each element of array
 
-    //name of object
-    echo "\"bookings\": [";
+    echo "\"bookings\": [";  //name of object
     //creation of JSON array of bookings
     foreach ($dates as $valOne) {
         foreach ($labs as $valTwo) {
 
-            $innerCount = 0; //this determines whether to place ',' in json object
+            $innerCount = 0; //this determines whether to place ',' between elements in each object in array
             echo "{\"Date\":\"$valOne\",";
             echo "\"LabName\":\"{$valTwo['labname']}\",";
             foreach ($times as $valThree) {

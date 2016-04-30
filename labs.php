@@ -15,15 +15,9 @@ class labs extends adb {
     }
 
     /**
-     * Gets all labs 
-     */
-    function getAllLabs() {
-        $strQuery = "select labname, department,supervisor_id from sweb_lab";
-        return $this->query($strQuery);
-    }
-    
-    /**
      * Gets lab names
+     * @param 
+     * @return a list of all the names of the labs
      */
     function getLabNames() {
         $strQuery = "select labname from sweb_lab";
@@ -42,15 +36,17 @@ class labs extends adb {
   print_r($obj->fetch()); */
 
 //unit test for getLabNames()
+//include_once("labs.php");
+//$obj=new labs();
 //$labs = array();
-//    if(!$obj2->getLabNames()){
+//    if(!$obj->getLabNames()){
 //        echo "Retrieval of lab names failed";
 //    }
 //    else{
-//        $temp = $obj2->fetch();
+//        $temp = $obj->fetch();
 //        while($temp){
 //            array_push($labs, $temp);
-//            $temp=$obj2->fetch();
+//            $temp=$obj->fetch();
 //        }
 //    }
 //    print_r($labs);

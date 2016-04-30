@@ -1,7 +1,6 @@
 <html>
 	<head>
 		<title>Master Bookings</title>
-		<link rel="stylesheet" href="css/style.css">
 	</head>
 
 <?php

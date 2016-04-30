@@ -4,81 +4,28 @@ include_once("adb.php");
 
 class booking extends adb {
 
+    // Constructor
     function booking() {
         
     }
-
-    function getUserID() {
-        $strQuery = "select sweb_booking.user_id from sweb_booking left join sweb_user on sweb_booking.user_id = sweb_user.user_id";
-
-        return $this->query($strQuery);
-    }
-
-    function getBookingID() {
-        $userID = $this->getUserID();
-        $strQuery = "select booking_id from sweb_booking where user_id = $userID";
-
-        return $this->query($strQuery);
-    }
-
-    function getLabName() {
-        $userID = $this->getUserID();
-        $strQuery = "select labname from sweb_booking where user_id = $userID";
-
-        return $this->query($strQuery);
-    }
-
-    function getBookingDate() {
-        $userID = $this->getUserID();
-        $strQuery = "select bookingdate from sweb_booking where user_id = $userID";
-
-        return $this->query($strQuery);
-    }
-
-    function getStartTime() {
-        $userID = $this->getUserID();
-        $strQuery = "select start_time from sweb_booking where user_id = $userID";
-
-        return $this->query($strQuery);
-    }
-
-    function getEndTime() {
-        $userID = $this->getUserID();
-        $strQuery = "select end_time from sweb_booking where user_id = $userID";
-
-        return $this->query($strQuery);
-    }
-
-    function getBookingStatus() {
-        $userID = $this->getUserID();
-        $strQuery = "select bookingstatus from sweb_booking where user_id = $userID";
-
-        return $this->query($strQuery);
-    }
-
-    function viewBooking() {
-        $userID = $this->getUserID();
-        $strQuery = "select booking_id, labname, bookingdate, start_time, end_time, bookingstatus from sweb_booking where user_id = $userID";
-
-        return $this->query($strQuery);
-    }
-//
-//    function viewBookingByDateAndLab($date,$lab) {
-//        $strQuery = "SELECT labname,bookingtime "
-//                . "FROM `sweb_booking` "
-//                . "WHERE labname = $lab "
-//                . "AND bookingdate = \"$date\"";
-////         echo $strQuery;
-//        return $this->query($strQuery);
-//    }
     
-    
+    /**
+     * Gets bookings for a specific date
+     * @param A date
+     * @return A list of all the labs and times they have been booked
+     */
     function viewBookingByDate($date) {
         $strQuery = "SELECT labname,bookingtime FROM `sweb_booking` WHERE bookingdate = \"$date\"";
 //         echo $strQuery;
         return $this->query($strQuery);
     }
     
+    /**
+     * Gets bookings for the week
+     * @param Date on which week begins
+     * @param Date on which week ends
+     * @return A list of all the dates as well as labs and times they have been booked
+     */
     function viewBookingByWeek($startDate,$endDate){
         $strQuery = "select bookingdate,labname,bookingtime from `sweb_booking` where bookingdate between \"$startDate\" and \"$endDate\"";
 //        echo $strQuery;
@@ -86,12 +33,17 @@ class booking extends adb {
     }
     
 
-    function getBookedDates() {
-        $strQuery = "SELECT bookingdate FROM `sweb_booking`";
-        return $this->query($strQuery);
-    }
+//    function getBookedDates() {
+//        $strQuery = "SELECT bookingdate FROM `sweb_booking`";
+//        return $this->query($strQuery);
+//    }
     
-    //function to get dates of current week
+    /**
+     * Gets all the dates within current week
+     * Week begins on Monday and ends on the next Monday
+     * @param 
+     * @return A list of all the dates within the week
+     */
     function getDates(){
         $dates = array();
         $startDate= date("F j, Y", strtotime( "previous monday" ));
@@ -103,40 +55,41 @@ class booking extends adb {
         }
         return $dates;
 }
-
-    /* function to print JSON object from an array
-     * takes in the array and name user provides
-     * 
-     */
-    
-//    function getJsonObject($array,$name){
-//        $arrayLength = count($array); //get the length of the times array
-//        $count = 0; //this determines whether to place ',' in json object
-//        //creation of JSON array 
-//        echo "{
-//	\"$name\": [";
-//    foreach ($array as $value) {
-//        echo "{
-//		\"Time\": \"$value\"
-//                }";
-//            if($count<$timesLength-1){
-//                echo ",";
-//            }
-//            $count++;
-//    }
-//    echo "]}";
-//    }
-
+}
     //unit test for viewBookingByWeek
 //include_once("booking.php");
 //$obj = new booking();
-//if(!$obj->viewBookingByWeek("2016-03-22", "2016-04-12")){
-//echo "failed to retrieve bookings for week";
+//$allbookings = array();
+//if (!$obj->viewBookingByWeek("2016-04-25", "2016-05-02")) {
+//    echo "failed to retrieve bookings for week";
+//} else {
+//    $row = $obj->fetch();
+//    while ($row) {
+//        array_push($allbookings, $row);
+//        $row = $obj->fetch();
+//    }
 //}
-//
+//print_r($allbookings);
+
 //$arr = $obj->fetch();
 //print_r($arr);
-}
+
+
+//unit test for viewBookingByDay
+//include_once("booking.php");
+//$obj = new booking();
+//$allbookings = array();
+//if (!$obj->viewBookingByDate("2016-04-29")) {
+//    echo "Retrieval of bookings failed";
+//} else {
+//    $row = $obj->fetch();
+//    while ($row) {
+//        array_push($allbookings, $row);
+//        $row = $obj->fetch();
+//    }
+//}
+//print_r($allbookings);
+
 
 //unit test for getDates
 //include_once("booking.php");
