@@ -110,7 +110,7 @@ function displayByDay() {
     /*
      * Next batch of code creates JSON array of all the bookings
      * Uses the labs, times and allbookings arrays created earlier
-     * Logic is to check all bookings array if it contains an array of the current labname and current time
+     * Logic is to check bookings array if it contains an array of the current labname and current time
      * current labname and current time are determined using two loops 
      */
     $bookingsLength = count($times); //get the length of the allbookings array

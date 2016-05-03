@@ -33,30 +33,35 @@ class booking extends adb {
     }
     
 
-//    function getBookedDates() {
-//        $strQuery = "SELECT bookingdate FROM `sweb_booking`";
-//        return $this->query($strQuery);
-//    }
     
     /**
      * Gets all the dates within current week
      * Week begins on Monday and ends on the next Monday
      * @param 
-     * @return A list of all the dates within the week
+     * @return An array of all the dates within the week
      */
-    function getDates(){
-        $dates = array();
-        $startDate= date("F j, Y", strtotime( "previous monday" ));
+    function getDates() {
+        $today = date("l"); //today's day of the week
+        
+        // this if block prevents dates from the previous week being retrieved every monday
+        if ($today != "Monday") {
+            $startDate = date("F j, Y", strtotime("previous monday"));
+        } else {
+            $startDate = date("F j, Y", strtotime("monday"));
+        }
+
         $endDate = date("F j, Y", strtotime("+7 day", strtotime($startDate)));
-    
+        $dates = array(); //array for the dates of the week
         while (strtotime($startDate) <= strtotime($endDate)) {
-            array_push($dates,$startDate);
-            $startDate = date("F j, Y", strtotime("+1 day", strtotime($startDate)));   
+            array_push($dates, $startDate);
+            $startDate = date("F j, Y", strtotime("+1 day", strtotime($startDate)));
         }
         return $dates;
+    }
+
 }
-}
-    //unit test for viewBookingByWeek
+
+//unit test for viewBookingByWeek
 //include_once("booking.php");
 //$obj = new booking();
 //$allbookings = array();

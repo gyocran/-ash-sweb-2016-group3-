@@ -16,7 +16,6 @@ class labs extends adb {
 
     /**
      * Gets lab names
-     * @param 
      * @return a list of all the names of the labs
      */
     function getLabNames() {

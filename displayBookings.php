@@ -96,7 +96,11 @@
     </head>
     <body>
         <script>
-
+            /*
+             * 
+             * @param {type} xhr
+             * @returns {undefined}
+             */
             function displayBookingsComplete(xhr) {
                 var obj = $.parseJSON(xhr.responseText); //retrive JSON object from ajax page
                 //variables for looping
