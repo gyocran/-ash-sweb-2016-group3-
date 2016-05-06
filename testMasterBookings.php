@@ -67,12 +67,4 @@ class testMasterBookings extends PHPUnit_Framework_TestCase {
         $this->assertSame($databaseBookings, $functionBookings);
     }
 
-//    public function testAjaxDisplayByDay() {
-//        //Arrange
-//        $obj = new booking();
-//        
-//        $this->assertJsonFileEqualsJsonFile(
-//          C:\xampp\htdocs\ViewBookingsMaster\-ash-sweb-2016-group3-\displaybydayJSON.txt, );
-//        
-//    }
 }

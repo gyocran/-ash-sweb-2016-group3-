@@ -1,8 +1,4 @@
 <?php
-
-/**
- * Maame Yaa Afriyie Poku
- */
 include_once("adb.php");
 
 /**
@@ -24,29 +20,4 @@ class labs extends adb {
     }
 
 }
-
-//Test
-/* $obj=new labs();
-  if(!$obj->query("select * from sweb_lab"))
-  {
-  echo "error";
-  exit();
-  }
-  print_r($obj->fetch()); */
-
-//unit test for getLabNames()
-//include_once("labs.php");
-//$obj=new labs();
-//$labs = array();
-//    if(!$obj->getLabNames()){
-//        echo "Retrieval of lab names failed";
-//    }
-//    else{
-//        $temp = $obj->fetch();
-//        while($temp){
-//            array_push($labs, $temp);
-//            $temp=$obj->fetch();
-//        }
-//    }
-//    print_r($labs);
 ?>

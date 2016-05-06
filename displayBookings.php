@@ -4,6 +4,7 @@
         <style>
             body {
                 color: #A7A1AE;
+                text-align: center;
             }
 
             .container {
@@ -107,7 +108,7 @@
                 var i = 0;
                 var j = 0;
                 var numLabs = obj.AllBookings.labs.length; //determines the length of labs array
-                var item; // used for displaying table in div.innerHTML
+                var item = "<br>"; // used for displaying table in div.innerHTML
                 var result = obj.AllBookings.outcome[0].result; // determines whether to display week's bookings of day's bookings
 
                 // if result==2, print out table for week's bookings
@@ -203,7 +204,7 @@
         </script>
         <link rel="stylesheet" href="css/style.css">
 
-        <h1>Please Select Your Option From The Drop Down Below</h1>
+        <h2>Please Select Your Option From The Drop Down Below</h2>
 
         <form id="form">
             <select id= "displayvalue" onchange="displayBookings(this)">

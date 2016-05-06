@@ -37,7 +37,6 @@ class booking extends adb {
     /**
      * Gets all the dates within current week
      * Week begins on Monday and ends on the next Monday
-     * @param 
      * @return An array of all the dates within the week
      */
     function getDates() {
@@ -60,45 +59,4 @@ class booking extends adb {
     }
 
 }
-
-//unit test for viewBookingByWeek
-//include_once("booking.php");
-//$obj = new booking();
-//$allbookings = array();
-//if (!$obj->viewBookingByWeek("2016-04-25", "2016-05-02")) {
-//    echo "failed to retrieve bookings for week";
-//} else {
-//    $row = $obj->fetch();
-//    while ($row) {
-//        array_push($allbookings, $row);
-//        $row = $obj->fetch();
-//    }
-//}
-//print_r($allbookings);
-
-//$arr = $obj->fetch();
-//print_r($arr);
-
-
-//unit test for viewBookingByDay
-//include_once("booking.php");
-//$obj = new booking();
-//$allbookings = array();
-//if (!$obj->viewBookingByDate("2016-04-29")) {
-//    echo "Retrieval of bookings failed";
-//} else {
-//    $row = $obj->fetch();
-//    while ($row) {
-//        array_push($allbookings, $row);
-//        $row = $obj->fetch();
-//    }
-//}
-//print_r($allbookings);
-
-
-//unit test for getDates
-//include_once("booking.php");
-//    $obj = new booking();
-//    $arr = $obj->getDates();
-//    print_r($arr);
 ?>
