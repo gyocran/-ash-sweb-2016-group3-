@@ -45,7 +45,6 @@ function displayByDay() {
     $times = array("8:00-9:00 am", "9:00-10:00 am", "10:00-11:00 am",
         "11:00-12:00 pm", "12:00-1:00 pm", "1:00-2:00 pm", "2:00-3:00 pm",
         "3:00-4:00 pm", "4:00-5:00 pm", "5:00-6:00 pm");
-
 // loop to create of JSON array of times
     $timesLength = count($times); //get the length of the times array
 // this determines whether to place ',' in json object
@@ -56,7 +55,8 @@ function displayByDay() {
         echo "{
 		\"Time\": \"$value\"
                 }";
-        //if (count!=length of array) print ","
+
+//if (count!=length of array) print ","
         if ($count < $timesLength - 1) { //
             echo ",";
         }
@@ -82,13 +82,12 @@ function displayByDay() {
      */
     $labsLength = count($labs); //get the length of the labs array
     $count = 0;
-
     echo "\"labs\": [";
     foreach ($labs as $value) {
         echo "{
 		\"LabName\": \"{$value['labname']}\"
                 }";
-        if ($count < $labsLength - 1) {
+                if ($count < $labsLength - 1) {
             echo ",";
         }
         $count++;
@@ -106,7 +105,7 @@ function displayByDay() {
             $row = $obj->fetch();
         }
     }
-
+    
     /*
      * Next batch of code creates JSON array of all the bookings
      * Uses the labs, times and allbookings arrays created earlier
@@ -139,6 +138,7 @@ function displayByDay() {
             $innerCount++;
         }
         echo "}";
+
         if ($outerCount < $labsLength - 1) {
             echo ",";
         }
@@ -149,6 +149,7 @@ function displayByDay() {
 }
 
 function displayByWeek() {
+
 
 // include booking class
     include_once("labs.php");
@@ -173,7 +174,6 @@ function displayByWeek() {
     // creation of JSON array of dates
     $datesLength = count($dates); //get the length of the times array
     $count = 0; //this determines whether to place ',' in json object
-
     echo "
 	\"dates\": [";
     foreach ($dates as $value) {

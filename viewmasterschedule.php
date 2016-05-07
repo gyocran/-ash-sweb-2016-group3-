@@ -46,12 +46,62 @@ echo "<table cellspacing= 1 border=1 cellpadding=3>
                         <th></th>
 			<th colspan=10>Time</th>
 			</tr>";
+<<<<<<< HEAD
 echo "<tr>
 			<th>LABS</th>";
 foreach ($times as $value) {
     echo "<td>$value</td>";
 }
 echo "</tr>";
+=======
+	echo "<tr>
+			<td $rowcolor1>LABS</td>";
+			foreach($times as $value){
+				echo "<td $rowcolor1>$value</td>";
+			}
+	echo "</tr>";
+
+		while($row){
+			echo "<tr>
+				<td>{$row['labname']}</td>";
+				foreach($times as $value){
+					if($row['bookingtime']==$value){
+						echo "<td>Booked</td>";
+					}
+					else{
+						echo "<td></td>";
+					}
+				}
+			$row=$obj->fetch();
+		}
+		echo "</table>";
+	}
+<<<<<<< HEAD
+	
+=======
+	// $dates = new booking();
+	// $objgetBookedDates();
+	// if(!$obj->getUserID()){
+		// echo "false";
+	// }
+	// $row = $obj->fetch();
+	// echo "<option value='{$row['']}'>help</option>";
+	// echo "<option value='2'>helpme</option>";
+	// if($dates==false){
+		// echo "result is false";
+	// }else{
+		// $row = $dates->fetch();
+		// print_r($row);
+		// while($row){
+			// echo "<option value='1'>help</option>";
+			// echo "<option value='{$row['bookingdate']}'>{$row['bookingdate']}</option>";
+			// $row=$obj->fetch();
+		// }
+	// }
+					// </select>
+>>>>>>> viewmaster
+?>
+>>>>>>> version2
 
 //display contents of bookings in the table
 foreach ($labs as $valOne) {
@@ -66,5 +116,59 @@ foreach ($labs as $valOne) {
     }
 }
 
+<<<<<<< HEAD
 echo "</table>";
+=======
+<?php
+<<<<<<< HEAD
+	
+=======
+	// $color = 1;
+	
+	// if(isset($_REQUEST['date'])){
+		// $temp = $_REQUEST['date'];
+		// $date = "\"$temp\"";
+	
+	// $t = $obj->viewBookingByDate($date);
+	
+		// if(!$t)
+			// echo "Unable to retrieve bookings";
+	
+	// $row = $obj->fetch();
+	
+	// print_r($e);
+	
+	// echo "<table cellspacing= 1 border=1 cellpadding=3>
+			// <tr style='background-color:#C47451;text-align:left'>
+			// <td>Lab Name</td>
+			// <td>Starting Time</td>
+			// <td>Ending Time</td>
+			// </tr>";
+	
+		// if($color==1){
+			// echo	
+				// "<tr style='background-color:#FFF380;text-align:left'>
+				// <td>{$row['labname']}</td>
+				// <td><strong>{$row['start_time']}</strong></td>
+				// <td><strong>{$row['end_time']}</strong></td>
+				// </tr>";
+			// $color=2;
+		// }
+	
+		// else{
+			// echo 
+				// "<tr style='background-color:#FFA62F;text-align:left'>
+				// <td>{$row['labname']}</td>
+				// <td><strong>{$row['start_time']}</strong></td>
+				// <td><strong>{$row['end_time']}</strong></td>
+				// </tr>";
+			// $color=1;
+		// }
+	// echo "</table>";
+	// }
+	// else{
+		// echo "Please enter a date";
+	// }
+>>>>>>> viewmaster
+>>>>>>> version2
 ?>
