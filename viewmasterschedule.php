@@ -73,7 +73,7 @@ echo "</tr>";
 			$row=$obj->fetch();
 		}
 		echo "</table>";
-	}
+	
 
 //display contents of bookings in the table
 foreach ($labs as $valOne) {
