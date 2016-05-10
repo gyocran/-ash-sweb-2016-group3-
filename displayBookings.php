@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
+	<head>
+		<title>Lab Time | MasterSchedule</title>
+
+		<link rel="stylesheet" href="css/style.css">
+		<script type="text/javascript" src="js/jquery-1.12.1.js"></script>
+		
+		<style>
             body {
                 color: #A7A1AE;
                 text-align: center;
@@ -90,13 +95,8 @@
                 width: 800px;
             } 
         </style>
-        <title>Bookings</title>
-        <script type="text/javascript" src="js/jquery-1.12.1.js"></script>
-        <script type="text/javascript"></script>
-    </head>
-    <body>
-        <script>
-            /*
+		<script type="text/javascript">
+			 /*
              * 
              * @param {type} xhr
              * @returns {undefined}
@@ -200,21 +200,59 @@
                             complete: displayBookingsComplete}
                 );
             }
-        </script>
-        <link rel="stylesheet" href="css/style.css">
+		</script>
+	</head>
 
-        <h2>Please Select Your Option From The Drop Down Below</h2>
 
-        <form id="form">
-            <select id= "displayvalue" onchange="displayBookings(this)">
-                <option value='0'></option>
-                <option value='1'>Today</option>
-                <option value='2'>This week</option>
-            </select>
-        </form>
+	<body>
+		<header  id="pageheader"> 
+			<div style="width:10%; height:100%;float: left;"></div>
+			<div style="width:80%; float: left;">
+				<center><img src="css/images/logo.gif" style="width:180px;height:105%";></center>
+			</div>
+			<div style="width:10%; float: left;">
+					<span class= "logout" onClick="location.href='logout.php'"> Logout</span>
+			</div>
+		</header> 
 
-        <div id="displayTable"></div>
 
-    </body>
+
+		<div id="navbar">
+			<table align="center">
+			<!--This creates the menu bar-->
+				<th>
+					<td class="item" onclick="location.href='viewmybookings.php'">My Bookings</td>
+					<td class="item" onclick="#'">Master Schedule</td>
+					<td class="item" onclick="location.href='manage_users.php'">Manage Users</td>
+					<td class="item" onclick="location.href = 'addbooking.php'">+ Add a booking</td>
+				</th>
+			</table>	
+		</div>
+
+		<!-- Where main content will be -->
+		<div id="content">
+				<div id="leftdiv">
+				</div>
+
+				<center>
+					<div id="middlediv">
+						<h2>Please Select Your Option From The Drop Down Below</h2>
+
+						<form id="form">
+							<select id= "displayvalue" onchange="displayBookings(this)">
+								<option value='0'></option>
+								<option value='1'>Today</option>
+								<option value='2'>This week</option>
+							</select>
+						</form>
+
+						<div id="displayTable"></div>
+					</div>
+				</center>
+
+				<div id="rightdiv">
+				</div>
+		</div>
+
+	</body> 
 </html>
-
